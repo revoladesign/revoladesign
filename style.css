@@ -105,3 +105,10 @@ form button {
   font-size: 18px;
   cursor: pointer;
 }
+.section-img {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  display: block;
+  border-radius: 10px;
+}
