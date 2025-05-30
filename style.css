@@ -243,8 +243,8 @@ body {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 150px;
-  padding: 150px 300px;
+  gap: 70px;
+  padding: 70px 140px;
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -255,8 +255,8 @@ body {
 }
 
 .service-item img {
-  width: 300px;
-  height: 300px;
+  width: 140px;
+  height: 140px;
   object-fit: contain;
 }
 
