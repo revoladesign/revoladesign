@@ -16,22 +16,38 @@
     <span class="brand-name">RÊVOLA DESIGN</span>
   </div>
   <div class="navbar-left">
-    <span class="menu-icon">☰</span>
+    <div class="menu-icon" onclick="openMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     <a href="#" class="signup-button">Sign Up</a>
   </div>
 </header>
 
-<!-- Fullscreen Menu Overlay -->
-<div id="menuOverlay" class="menu-overlay">
-  <span class="close-btn" onclick="closeMenu()">❌</span>
-  <ul class="menu-links">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Portfolio</a></li>
-    <li><a href="#">Services</a></li>
-    <li><a href="#">About us</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-</div>
+
+  <!-- القائمة الجانبية -->
+  <div id="menuOverlay" class="menu-overlay">
+    <span class="close-btn" onclick="closeMenu()">❌</span>
+    <ul class="menu-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">About us</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- جافاسكريبت -->
+  <script>
+    function openMenu() {
+      document.getElementById("menuOverlay").classList.add("active");
+    }
+
+    function closeMenu() {
+      document.getElementById("menuOverlay").classList.remove("active");
+    }
+  </script>
 
   <!-- محتوى الصفحة الرئيسية -->
   <main class="home-content">
