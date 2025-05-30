@@ -47,6 +47,46 @@ body {
   font-weight: bold;
 }
 
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* مخفية في البداية */
+  width: 250px;
+  height: 100%;
+  background-color: #416A84;
+  color: #D7E3E5;
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.close-btn {
+  font-size: 24px;
+  cursor: pointer;
+  display: block;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.sidebar-links {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-links li {
+  margin: 15px 0;
+}
+
+.sidebar-links a {
+  color: #D7E3E5;
+  text-decoration: none;
+  font-size: 18px;
+}
+
 .home-content {
   text-align: center;
   margin-top: 60px;
