@@ -224,8 +224,8 @@ body {
 /* خلفية منقطة */
 .services-page {
   background-color: #D7E3E5;
-  background-image: radial-gradient(#416A84 1px, transparent 1px);
-  background-size: 20px 20px;
+  background-image: radial-gradient(#416A84 2px, transparent 2px);
+  background-size: 25px 25px;
   font-family: 'Amiri', serif;
   margin: 0;
   padding: 0;
