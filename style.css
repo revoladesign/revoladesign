@@ -52,6 +52,7 @@
 
 .center-logo-img {
   height: 80px;
+  animation: rotate 6s linear infinite; /* هذا اللي يعمل الدوران */
 }
 
 @keyframes rotate {
