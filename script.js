@@ -8,4 +8,4 @@
   }
 
   document.querySelector('.menu-icon').addEventListener('click', openMenu);
-</script>
+</script> 
