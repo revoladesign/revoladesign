@@ -224,7 +224,7 @@ body {
 /* خلفية منقطة */
 .services-page {
   background-color: #D7E3E5;
-  background-image: radial-gradient(#416A84 5px, transparent 5px);
+  background-image: radial-gradient(#416A84 3px, transparent 3px);
   background-size: 50px 50px;
   font-family: 'Amiri', serif;
   margin: 0;
@@ -235,8 +235,8 @@ body {
 .services-title {
   text-align: center;
   color: #416A84;
-  font-size: 36px;
-  margin: 30px 0;
+  font-size: 56px;
+  margin: 50px 0;
 }
 
 /* الشبكة */
@@ -255,14 +255,14 @@ body {
 }
 
 .service-item img {
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 300px;
   object-fit: contain;
 }
 
 .service-item p {
-  margin-top: 200px;
-  font-size: 50px;
+  margin-top: 300px;
+  font-size: 100px;
   color: #416A84;
 }
 
