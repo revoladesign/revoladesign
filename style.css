@@ -1,3 +1,93 @@
+/* الفيديو كخلفية */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  opacity: 0.7;
+  background-color: #375666;
+  object-fit: cover;
+}
+
+/* الطبقة فوق الفيديو */
+.main-wrapper {
+  position: relative;
+  z-index: 1;
+  color: #000;
+  font-family: 'Amiri', serif;
+}
+
+/* الشريط العلوي */
+.navbar {
+  background-color: rgba(132, 171, 180, 0.7);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  position: relative;
+}
+
+.logo {
+  font-weight: bold;
+}
+
+.nav-right {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+/* المحتوى الرئيسي */
+.main-content {
+  text-align: center;
+  margin-top: 120px;
+}
+
+.center-logo-img {
+  height: 80px;
+  animation: rotate 5s linear infinite;
+}
+
+.centered-title {
+  font-size: 32px;
+  color: #000000;
+  margin-top: 20px;
+  font-family: 'Amiri', serif;
+}
+
+.main-description {
+  font-size: 20px;
+  color: #000;
+  margin: 10px auto;
+  font-family: 'Aref Ruqaa', serif;
+}
+
+.main-signup {
+  margin-top: 20px;
+  padding: 10px 25px;
+  font-family: 'Amiri', serif;
+  background-color: #84ABB4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+/* حركة الدوران */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+
+
+
 /* خلفية الفيديو */
 #bg-video {
   position: fixed;
