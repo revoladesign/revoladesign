@@ -47,44 +47,48 @@ body {
   font-weight: bold;
 }
 
-.sidebar {
+.menu-overlay {
   position: fixed;
   top: 0;
-  left: -250px; /* مخفية في البداية */
-  width: 250px;
+  left: 0;
+  width: 100%;
   height: 100%;
   background-color: #416A84;
   color: #D7E3E5;
-  padding: 20px;
-  transition: left 0.3s ease;
-  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
 
-.sidebar.active {
-  left: 0;
+.menu-overlay.active {
+  display: flex;
 }
 
 .close-btn {
-  font-size: 24px;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
   cursor: pointer;
-  display: block;
-  text-align: right;
-  margin-bottom: 20px;
+  color: #D7E3E5;
 }
 
-.sidebar-links {
+.menu-links {
   list-style: none;
   padding: 0;
+  text-align: center;
 }
 
-.sidebar-links li {
-  margin: 15px 0;
+.menu-links li {
+  margin: 20px 0;
 }
 
-.sidebar-links a {
+.menu-links a {
   color: #D7E3E5;
+  font-size: 24px;
   text-decoration: none;
-  font-size: 18px;
 }
 
 .home-content {
