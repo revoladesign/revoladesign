@@ -5,53 +5,6 @@ body {
   color: #441431;
 }
 
-.navbar {
-  background-color: #441431;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 20px;
-}
-
-.logo {
-  height: 50px;
-}
-
-.navbar {
-  background-color: #441431;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-}
-
-.logo {
-  height: 50px;
-}
-
-.brand-title {
-  color: #DCDDD1;
-  font-size: 1.2rem;
-  font-family: 'Amiri', serif;
-  margin-right: auto;
-  margin-left: 20px;
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.signup-btn {
-  background-color: #DCDDD1;
-  color: #441431;
-  font-family: 'Amiri', serif;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 30px;
-  font-size: 1rem;
-  cursor: pointer;
 }
 
 /* الشريط */
@@ -71,23 +24,6 @@ body {
   cursor: pointer;
 }
 
-/* القائمة الجانبية */
-.sidebar {
-  position: fixed;
-  top: 0;
-  right: -270px;
-  width: 250px;
-  height: 100%;
-  background-color: rgba(70, 22, 51, 0.95);
-  color: #D4D2C9;
-  transition: right 0.4s ease;
-  z-index: 1001;
-  padding: 20px;
-}
-
-.sidebar.show {
-  right: 0;
-}
 
 /* تغطية خلفية شفافة */
 .overlay {
