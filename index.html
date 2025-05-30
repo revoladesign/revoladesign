@@ -1,69 +1,50 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RÊVOLA DESIGN</title>
-  <link rel="stylesheet" href="style.css">
-
-  <!-- خطوط -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rêvola Design</title>
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa&display=swap" rel="stylesheet"> <!-- بدل Afeesh -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet"> <!-- بدل Beautifully Delicious -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<!-- خلفية الفيديو -->
-<video autoplay muted loop id="bg-video">
-  <source src="video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<header>
+  <div class="navbar">
+    <img src="revola-logo.png" alt="Logo" class="logo">
+    <span class="brand-title">RÊVOLA DESIGN</span>
+    <div class="nav-actions">
+     <!-- زر Sign up -->
+<button class="signup-btn" onclick="openSignup()">Sign up</button>
 
-<!-- كل المحتوى فوق الفيديو -->
-<div class="main-wrapper">
-  <header class="navbar">
-    <div class="logo">شعارك</div>
-    <div class="nav-right">
-      <div class="menu-icon">☰</div>
-      <button class="signup-btn">Sign up</button>
-    </div>
-  </header>
+<!-- صورة البروفايل (مخفية بالبداية) -->
+<img src="profile-icon.png" class="profile-icon" id="profileIcon" style="display: none;" onclick="openAccount()">
+      <header class="navbar">
+  <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+</header>
 
-  <div class="main-content">
-    <img src="logo.png" class="center-logo-img" />
-    <h1 class="centered-title">RÊVOLA DESIGN</h1>
-    <p class="main-description">لكل فكرة تصميم… ولكل تصميم لمسة من RÊVOLA</p>
-    <button class="main-signup">Sign up</button>
-  </div>
+     
+
+<!-- Home Section -->
+  </section>
+<section class="main-section">
+  <div class="image-side">
+  <img src="home.jpg" alt="Home Image">
 </div>
-
-
-  <!-- خلفية الفيديو -->
-  <video autoplay muted loop id="bg-video">
-  <source src="Video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-  <div class="overlay"></div>
-
-  <!-- الشريط العلوي -->
-  <header class="navbar">
-    <div class="logo">
-  <img src="assets/revola-logo.png" alt="Revola Logo" class="logo-img">
-</div>
-    <div class="nav-icons">
-      <button id="menuBtn">☰</button>
-      <button id="signUpBtn">Sign up</button>
-    </div>
-  </header>
-
-  <!-- المحتوى الرئيسي -->
-  <main class="main-content">
-    <div class="centered-logo rotating">
-  <img src="assets/revola-logo.png" alt="Revola Logo" class="center-logo-img">
-</div>
+  <div class="right-content">
     <h1 class="main-title">RÊVOLA DESIGN</h1>
-    <p class="main-description">لكل فكرة تصميم… ولكل تصميم لمسة من RÊVOLA</p>
-    <button class="main-signup">Sign up</button>
-  </main>
-
+    <p class="main-desc">كل ما تحتاجه من تصاميم احترافية بلمسة مميزة تجده هنا ..</p>
+    <button onclick="openSignup()">Sign up</button>
+    <p class="follow-text">Follow me</p>
+    <div class="social-icons">
+      <span>🌸</span>
+      <span>🌸</span>
+      <span>🌸</span>
+    </div>
+    <div id="signup-message" class="signup-reveal" style="display: none;">Sign up</div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
+   </section>
