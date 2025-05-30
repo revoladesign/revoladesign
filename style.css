@@ -49,9 +49,8 @@
   margin-top: 150px;
 }
 
-.rotating {
-  font-size: 80px;
-  animation: rotate 8s linear infinite;
+.center-logo-img {
+  height: 80px;
 }
 
 @keyframes rotate {
