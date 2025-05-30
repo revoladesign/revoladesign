@@ -14,7 +14,7 @@
 /* الطبقة فوق الفيديو */
 .main-wrapper {
   position: relative;
-  z-index: 1;
+  z-index: 0;
   color: #000;
   font-family: 'Amiri', serif;
 }
