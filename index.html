@@ -1,73 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rêvola Design</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RÊVOLA DESIGN</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- خطوط -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa&display=swap" rel="stylesheet"> <!-- بدل Afeesh -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet"> <!-- بدل Beautifully Delicious -->
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Logo" class="logo">
-    <h1>Rêvola Design</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About Us</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <section id="home">
-  <img src="home.jpg" alt="Main design" class="section-img">
-  ...
-</section>
-    <h2>كل ما تحتاجه من تصاميم احترافية بلمسة مميزة تجده هنا ..</h2>
-    <button class="cta">Sign up</button>
-    <button class="cta">Sign up</button>
-  </section>
+  <!-- خلفية الفيديو -->
+  <video autoplay loop muted class="bg-video">
+    <source src="assets/video.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
 
-  <section id="about">
-  <img src="about.jpg" alt="About Image" class="section-img">
-  ...
-</section>
-    <h2>About Us</h2>
-    <p>“At Rêvola Design, we create beauty from simplicity!<br>
-    We’re a passionate team dedicated to designing presentations, posters, cards, and more — all with a modern touch.<br>
-    We believe that every small detail has the power to make a big impact.”</p>
-  </section>
+  <!-- الشريط العلوي -->
+  <header class="navbar">
+    <div class="logo">🌸</div>
+    <div class="nav-icons">
+      <button id="menuBtn">☰</button>
+      <button id="signUpBtn">Sign up</button>
+    </div>
+  </header>
 
-  <section id="portfolio">
-    <h2>Portfolio</h2>
-    <p>A little gallery of what we love to do</p>
-    <div class="gallery">
-      <img src="image1.jpg" alt="Design 1">
-      <img src="image2.jpg" alt="Design 2">
-      <img src="image3.jpg" alt="Design 3">
-    </div>
-  </section>
+  <!-- المحتوى الرئيسي -->
+  <main class="main-content">
+    <div class="centered-logo rotating">🌸</div>
+    <h1 class="main-title">RÊVOLA DESIGN</h1>
+    <p class="main-description">لكل فكرة تصميم… ولكل تصميم لمسة من RÊVOLA</p>
+    <button class="main-signup">Sign up</button>
+  </main>
 
-  <section id="contact">
-  <img src="contact.jpg" alt="Contact Visual" class="section-img">
-  ...
-</section>
-    <h2>Contact</h2>
-    <form>
-      <input type="text" placeholder="Nom" required />
-      <input type="email" placeholder="Gmail" required />
-      <textarea placeholder="Message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-  </section>
-
-  <div id="signup-popup" class="popup">
-    <div class="popup-content">
-      <span class="close" onclick="closeSignup()">&times;</span>
-      <h3>Sign up</h3>
-      <p>Signup form or CTA goes here.</p>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
