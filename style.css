@@ -1,4 +1,4 @@
-/* الفيديو كخلفية body {
+body {
   margin: 0;
   font-family: 'Amiri', serif;
   background-color: #B8ADAB;
@@ -200,9 +200,3 @@
   font-size: 1.1rem;
   color: #441431;
 }
-
-
-
-
-
-
