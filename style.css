@@ -458,7 +458,7 @@ body {
 
 <style>
   form {
-    direction: rtl; /* يجعل اتجاه الكتابة من اليمين لليسار */
+    direction: ltr; /* يجعل اتجاه الكتابة من اليمين لليسار */
   }
 
   label {
