@@ -456,6 +456,18 @@ body {
   resize: none;
 }
 
+<style>
+  input::placeholder,
+  textarea::placeholder {
+    color: #416A84;
+  }
+
+  input,
+  textarea {
+    color: #416A84;
+  }
+</style>
+
 .contact-button {
   background-color: #D7E3E5;
   color: #416A84;
