@@ -495,3 +495,24 @@ body {
 section {
   scroll-margin-top: 80px; /* حسب ارتفاع الشريط العلوي */
 }
+
+.scroll-top-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 9999;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.scroll-top-btn:hover {
+  transform: scale(1.2);
+}
+
+html {
+  scroll-behavior: smooth;
+}
