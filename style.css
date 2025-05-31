@@ -221,50 +221,7 @@ body {
 }
 
 
-/* خلفية منقطة */
-.services-page {
-  background-color: #D7E3E5;
-  background-image: radial-gradient(#416A84 3px, transparent 3px);
-  background-size: 50px 50px;
-  font-family: 'Amiri', serif;
-  margin: 0;
-  padding: 0;
-}
-
-/* عنوان الصفحة */
-.services-title {
-  .services-title {
-  font-family: 'Amiri', serif;
-  color: #416A84;
-  font-size: 40px; /* أو أكبر حسب ذوقك */
-}
-
-/* الشبكة */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 70px;
-  padding: 70px 140px;
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-/* العنصر */
-.service-item {
-  text-align: center;
-}
-
-.service-item img {
-  width: 140px;
-  height: 140px;
-  object-fit: contain;
-}
-
-.service-item p {
-  margin-top: 300px;
-  font-size: 100px;
-  color: #416A84;
-}
+/* خلفية منقطة 
 
 .revola-invite-section {
   background-color: #416A84;
