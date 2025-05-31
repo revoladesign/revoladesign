@@ -457,6 +457,10 @@ body {
 }
 
 <style>
+  label {
+    color: #416A84;
+  }
+
   input::placeholder,
   textarea::placeholder {
     color: #416A84;
