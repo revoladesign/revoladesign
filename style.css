@@ -400,3 +400,59 @@ body {
   margin: 0 auto;
 }
 
+.contact-section {
+  background-color: #416A84;
+  background-image: radial-gradient(rgba(215, 227, 229, 0.5) 100px, transparent 101px);
+  background-size: 300px 300px;
+  background-repeat: repeat;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.contact-title {
+  font-family: 'Amiri', serif;
+  font-size: 40px;
+  color: #D7E3E5;
+  margin-bottom: 40px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact-input,
+.contact-textarea {
+  width: 80%;
+  max-width: 500px;
+  padding: 15px;
+  border: none;
+  background-color: rgba(215, 227, 229, 0.7); /* 70% شفافية */
+  font-family: 'Amiri', serif;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.contact-textarea {
+  height: 150px;
+  resize: none;
+}
+
+.contact-button {
+  background-color: #D7E3E5;
+  color: #416A84;
+  padding: 12px 30px;
+  font-family: 'Amiri', serif;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact-button:hover {
+  background-color: #c0d4d7;
+}
+
