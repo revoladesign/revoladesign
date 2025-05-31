@@ -402,8 +402,8 @@ body {
 
 .contact-section {
   background-color: #416A84;
-  background-image: radial-gradient(rgba(215, 227, 229, 0.5) 100px, transparent 101px);
-  background-size: 300px 300px;
+  background-image: url('cow-pattern.png'); /* ضعي صورة فيها بقع شفافة */
+  background-size: cover;
   background-repeat: repeat;
   padding: 80px 20px;
   text-align: center;
