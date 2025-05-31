@@ -492,3 +492,6 @@ body {
   background-color: #c0d4d7;
 }
 
+section {
+  scroll-margin-top: 80px; /* حسب ارتفاع الشريط العلوي */
+}
