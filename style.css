@@ -278,6 +278,19 @@ body {
   background-color: #ffffff;
 }
 
+.rotating-logo {
+  width: 120px;
+  height: auto;
+  margin-top: 30px;
+  animation: rotateLogo 6s linear infinite;
+  transition: transform 0.3s ease;
+}
+
+@keyframes rotateLogo {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .revola-invite-section {
   background-color: #416A84;
   padding: 80px 20px;
