@@ -487,130 +487,135 @@
 </script>
 
 
-  <!-- زر فتح الشاشة -->
-<button class="trigger-order-btn" onclick="openOrderForm()">Order now</button>
-
-<!-- الشاشة المنبثقة -->
-<div id="orderOverlay" class="order-overlay">
-  <div class="order-content">
-    <span class="close-order" onclick="closeOrderForm()">✖</span>
+  <!-- زر فتح الشاشة --><!-- شاشة الطلب المنبثقة -->
+<div class="form-overlay" id="orderForm">
+  <div class="form-container">
+    <button class="close-btn" onclick="closeForm()">✖</button>
     <h2>The request</h2>
     <p>للطلب يرجى ملء الاستمارة</p>
 
     <form>
-      <input type="text" placeholder="Subject of the offer" required />
+      <input type="text" placeholder="Subject of the offer" required>
       
       <select required>
-        <option disabled selected>What colors do you prefer in the exhibition?</option>
-        <option>Pastel</option>
-        <option>Dirt</option>
-        <option>Neutral</option>
-        <option>Quiet</option>
-        <option>Thermal</option>
+        <option value="">What colors do you prefer in the exhibition?</option>
+        <option value="pastel">Pastel</option>
+        <option value="dirt">Dirt</option>
+        <option value="neutral">Neutral</option>
+        <option value="quiet">Quiet</option>
+        <option value="thermal">Thermal</option>
       </select>
       
       <textarea placeholder="Describe your offer" rows="4" required></textarea>
       
-      <button type="submit">Order now</button>
+      <button type="submit" class="send-order-btn">Order now</button>
     </form>
   </div>
 </div>
 
 <style>
-  .trigger-order-btn {
-    display: block;
-    margin: 40px auto;
-    padding: 12px 25px;
-    background-color: #4F7A92;
-    color: #fff;
-    border: none;
-    font-family: 'Amiri', serif;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .trigger-order-btn:hover {
-    background-color: #395c71;
-  }
-
-  .order-overlay {
+  .form-overlay {
     position: fixed;
-    left: 0;
     bottom: -100%;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(228, 237, 234, 0.5); /* اللون + الشفافية 50% */
+    background-color: rgba(228, 237, 234, 0.5); /* #E4EDEA بشفافية 50% */
+    backdrop-filter: blur(6px);
+    transition: bottom 0.5s ease;
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
-    transition: bottom 0.6s ease; /* المؤثر الناعم من الأسفل للأعلى */
   }
 
-  .order-overlay.active {
+  .form-overlay.active {
     bottom: 0;
   }
 
-  .order-content {
-    background: white;
+  .form-container {
+    background-color: #ffffff;
     padding: 30px;
-    border-radius: 12px;
     width: 90%;
-    max-width: 500px;
+    max-width: 450px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     font-family: 'Amiri', serif;
     color: #4F7A92;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
     position: relative;
+    text-align: center;
   }
 
-  .close-order {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 20px;
-    cursor: pointer;
+  .form-container h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
   }
 
-  .order-content input,
-  .order-content select,
-  .order-content textarea {
+  .form-container p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+  }
+
+  .form-container input,
+  .form-container select,
+  .form-container textarea {
     width: 100%;
-    margin-top: 10px;
     margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #4F7A92;
-    border-radius: 5px;
-    background-color: rgba(79, 122, 146, 0.5); /* شفاف 50% */
-    color: #4F7A92;
+    padding: 10px 14px;
     font-family: 'Amiri', serif;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgba(79, 122, 146, 0.5);
+    color: #fff;
   }
 
-  .order-content button[type="submit"] {
+  .form-container textarea {
+    resize: none;
+  }
+
+  .send-order-btn {
     background-color: #4F7A92;
     color: white;
-    padding: 10px 25px;
+    padding: 10px 24px;
     border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
+    border-radius: 10px;
     font-family: 'Amiri', serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
 
-  .order-content button[type="submit"]:hover {
-    background-color: #395c71;
+  .send-order-btn:hover {
+    background-color: #3a617c;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: #4F7A92;
+    cursor: pointer;
   }
 </style>
 
 <script>
-  function openOrderForm() {
-    document.getElementById("orderOverlay").classList.add("active");
+  function openForm() {
+    document.getElementById('orderForm').classList.add('active');
   }
 
-  function closeOrderForm() {
-    document.getElementById("orderOverlay").classList.remove("active");
+  function closeForm() {
+    document.getElementById('orderForm').classList.remove('active');
   }
-  
+
+  // ربط كل الأزرار التي لديها الكلاس "icon-order-btn"
+  document.querySelectorAll('.icon-order-btn').forEach(btn => {
+    btn.addEventListener('click', openForm);
+  });
+</script>
+
   
 </script>
 </body>
