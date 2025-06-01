@@ -633,7 +633,240 @@
   });
 </script>
 
-  
+  <!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RÊVOLA Services</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
+
+    body {
+      font-family: 'Amiri', serif;
+      background-color: #D7E3E5;
+      color: #416A84;
+      direction: rtl;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .service-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    .icon-order-btn {
+      font-family: 'Amiri', serif;
+      font-size: 1.1rem;
+      background-color: #4F7A92;
+      color: #E4EDEA;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .icon-order-btn:hover {
+      background-color: #3b5e74;
+    }
+
+    /* شاشة العرض والاستمارة */
+    .modal-overlay {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(228, 237, 234, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: flex-end;
+      z-index: 9999;
+      animation: slideUp 0.5s ease forwards;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 25px 25px 0 0;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      font-family: 'Amiri', serif;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #4F7A92;
+    }
+
+    .carousel {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .carousel img.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    .form-title {
+      font-size: 2rem;
+      color: #4F7A92;
+      text-align: left;
+    }
+
+    .form-subtitle {
+      color: #4F7A92;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: none;
+      background-color: rgba(79, 122, 146, 0.5);
+      color: #fff;
+      font-family: 'Amiri', serif;
+      text-align: right;
+    }
+
+    .submit-btn {
+      background-color: #4F7A92;
+      color: #E4EDEA;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 12px;
+      font-family: 'Amiri', serif;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #3c6075;
+    }
+  </style>
+</head>
+<body>
+
+<h1>خدماتنا</h1>
+
+<div class="service-buttons">
+  <button class="icon-order-btn" data-service="Presentations">Presentations</button>
+  <button class="icon-order-btn" data-service="Prints">Prints</button>
+  <button class="icon-order-btn" data-service="Cards">Cards</button>
+  <button class="icon-order-btn" data-service="Logos">Logos</button>
+  <button class="icon-order-btn" data-service="Diplômes">Diplômes</button>
+  <button class="icon-order-btn" data-service="Social media">Social media</button>
+  <button class="icon-order-btn" data-service="Videos">Videos</button>
+  <button class="icon-order-btn" data-service="Docs">Docs</button>
+</div>
+
+<!-- الشاشة المنبثقة -->
+<div id="service-modal" class="modal-overlay">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()">×</button>
+    <div class="carousel" id="carousel">
+      <!-- الصور ستُضاف هنا -->
+    </div>
+    <h2 class="form-title">The request</h2>
+    <p class="form-subtitle">لطلب الخدمة يرجى ملء الاستمارة</p>
+    <form>
+      <input type="text" placeholder="Subject of the offer" class="form-input" />
+      <select class="form-input">
+        <option disabled selected>What colors do you prefer?</option>
+        <option>Pastel</option>
+        <option>Dirt</option>
+        <option>Neutral</option>
+        <option>Quiet</option>
+        <option>Thermal</option>
+      </select>
+      <select class="form-input">
+        <option disabled selected>Language</option>
+        <option>English</option>
+        <option>French</option>
+        <option>Arabic</option>
+      </select>
+      <textarea placeholder="Describe your offer" class="form-input" rows="4"></textarea>
+      <button type="submit" class="submit-btn">Order now</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const imageSets = {
+    Presentations: ["https://via.placeholder.com/500x180?text=Presentations+1", "https://via.placeholder.com/500x180?text=Presentations+2"],
+    Prints: ["https://via.placeholder.com/500x180?text=Prints+1", "https://via.placeholder.com/500x180?text=Prints+2"],
+    Cards: ["https://via.placeholder.com/500x180?text=Cards+1", "https://via.placeholder.com/500x180?text=Cards+2"],
+    Logos: ["https://via.placeholder.com/500x180?text=Logos+1", "https://via.placeholder.com/500x180?text=Logos+2"],
+    Diplômes: ["https://via.placeholder.com/500x180?text=Diplômes+1", "https://via.placeholder.com/500x180?text=Diplômes+2"],
+    "Social media": ["https://via.placeholder.com/500x180?text=Social+Media+1", "https://via.placeholder.com/500x180?text=Social+Media+2"],
+    Videos: ["https://via.placeholder.com/500x180?text=Videos+1", "https://via.placeholder.com/500x180?text=Videos+2"],
+    Docs: ["https://via.placeholder.com/500x180?text=Docs+1", "https://via.placeholder.com/500x180?text=Docs+2"]
+  };
+
+  function openModal(serviceName) {
+    const carousel = document.getElementById("carousel");
+    carousel.innerHTML = imageSets[serviceName].map((src, i) =>
+      `<img src="${src}" class="${i === 0 ? 'active' : ''}" alt="${serviceName}">`
+    ).join('');
+    document.getElementById("service-modal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("service-modal").style.display = "none";
+  }
+
+  document.querySelectorAll(".icon-order-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const serviceName = btn.getAttribute("data-service");
+      openModal(serviceName);
+    });
+  });
+</script>
+
+</body>
+</html>
+
+
 </script>
 </body>
 </html>
