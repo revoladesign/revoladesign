@@ -162,6 +162,372 @@
       </a>
     </div>
   </section>
+  
+  
+  <!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RÊVOLA SERVICES with Sidebar</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
 
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #D7E3E5;
+      margin: 0;
+      padding: 40px 20px;
+      direction: rtl;
+      color: #416A84;
+      text-align: center;
+      overflow-x: hidden; /* منع تمرير عرضي */
+    }
+
+    h1 {
+      font-family: 'Amiri', serif;
+      font-size: 3rem;
+      color: #416A84;
+      margin-bottom: 10px;
+    }
+
+    p.description {
+      font-family: 'Amiri', serif;
+      font-size: 1.4rem;
+      color: #416A84;
+      margin-bottom: 40px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px 20px;
+      max-width: 1200px;
+      margin: 0 auto 60px;
+    }
+
+    .service-item {
+      background: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .service-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 20px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 8px rgba(65, 106, 132, 0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .service-image:hover {
+      transform: scale(1.05);
+    }
+
+    .order-button {
+      font-family: 'Amiri', serif;
+      font-size: 1.1rem;
+      background-color: #416A84;
+      color: #D7E3E5;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      text-decoration: none;
+    }
+    .order-button:hover {
+      background-color: #2b4a60;
+    }
+
+    .order-icon {
+      width: 18px;
+      height: 18px;
+      fill: #D7E3E5;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -400px; /* مخفية تماماً */
+      width: 400px;
+      height: 100vh;
+      background-color: rgba(79, 122, 146, 0.5); /* لون #4F7A92 بشفافية 50% */
+      backdrop-filter: blur(8px);
+      box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+      color: #E4EDEA;
+      padding: 30px 20px;
+      font-family: 'Amiri', serif;
+      text-align: center;
+      transition: right 0.5s ease; /* مؤثر انزلاق لطيف */
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .sidebar.open {
+      right: 0; /* تظهر */
+    }
+
+    .sidebar h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .sidebar p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+    }
+
+    /* معرض الصور */
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      margin-bottom: 30px;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .carousel img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+      border-radius: 20px;
+    }
+    .carousel img.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    /* الأيقونتين */
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+    .icon-box {
+      background-color: rgba(53, 97, 120, 0.5); /* #356178 بشفافية 50% */
+      padding: 15px 20px;
+      border-radius: 20px;
+      width: 160px;
+      color: #E4EDEA;
+      font-family: 'Amiri', serif;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
+    }
+    .icon-box:hover {
+      background-color: rgba(53, 97, 120, 0.8);
+    }
+    .icon-box img {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+    .icon-box .title {
+      font-size: 1.2rem;
+      color: #E4EDEA;
+    }
+
+    /* زر Order now داخل الأيقونات */
+    .icon-order-btn {
+      font-family: 'Amiri', serif;
+      font-size: 1rem;
+      background-color: #E4EDEA;
+      color: #4F7A92;
+      padding: 6px 18px;
+      border-radius: 12px;
+      user-select: none;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      justify-content: center;
+    }
+    .icon-order-btn:hover {
+      background-color: #dbe5e9;
+    }
+    .icon-order-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: #4F7A92;
+    }
+
+    /* زر غلق القائمة */
+    .sidebar-close {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: none;
+      border: none;
+      color: #E4EDEA;
+      font-size: 2rem;
+      cursor: pointer;
+      user-select: none;
+      padding: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>RÊVOLA SERVICES</h1>
+  <p class="description">خدماتنا المصممة خصيصًا لك — لأن كل فكرة تحتاج تصميم يعبّر عنها!</p>
+
+  <section class="services-grid">
+    <div class="service-item">
+      <img src="icon1.png" alt="Service 1" class="service-image" />
+      <button class="order-button" id="openSidebarBtn">
+        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
+        Order now
+      </button>
+    </div>
+    <!-- باقي الخدمات بدون تفاعل -->
+    <div class="service-item">
+      <img src="icon2.png" alt="Service 2" class="service-image" />
+      <a href="#" class="order-button">
+        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
+        Order now
+      </a>
+    </div>
+    <div class="service-item">
+      <img src="icon3.png" alt="Service 3" class="service-image" />
+      <a href="#" class="order-button">
+        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
+        Order now
+      </a>
+    </div>
+    <div class="service-item">
+      <img src="icon4.png" alt="Service 4" class="service-image" />
+      <a href="#" class="order-button">
+        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
+        Order now
+      </a>
+    </div>
+    <div class="service-item">
+      <img src="icon5.png" alt="Service 5" class="service-image" />
+      <a href="#" class="order-button">
+        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
+        Order now
+      </a>
+    </div>
+    <div class="service-item">
+      <img src="icon6.png" alt="Service 6" class="service-image" />
+      <a href="#" class="order-button">
+        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
+        Order now
+      </a>
+    </div>
+    <div class="service-item">
+      <img src="icon7.png" alt="Service 7" class="service-image" />
+      <a href="#" class="order-button">
+        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
+        Order now
+      </a>
+    </div>
+    <div class="service-item">
+      <img src="icon8.png" alt="Service 8" class="service-image" />
+      <a href="#" class="order-button">
+        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
+        Order now
+      </a>
+    </div>
+  </section>
+
+  <!-- القائمة الجانبية -->
+  <aside class="sidebar" id="sidebar">
+    <button class="sidebar-close" id="closeSidebarBtn" aria-label="Close Sidebar">&times;</button>
+    <h2>PRESENTATIONS</h2>
+    <p>عروض تقديمية عصرية</p>
+
+    <div class="carousel" id="carousel">
+      <img src="presentation1.jpg" class="active" alt="Presentation 1" />
+      <img src="presentation2.jpg" alt="Presentation 2" />
+      <img src="presentation3.jpg" alt="Presentation 3" />
+    </div>
+
+    <div class="icon-container">
+      <div class="icon-box">
+        <img src="iconA.jpg" alt="Icon A" />
+        <div class="title">تصميم مميز</div>
+        <button class="icon-order-btn">
+          <svg viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
+          Order now
+        </button>
+      </div>
+      <div class="icon-box">
+        <img src="iconB.jpg" alt="Icon B" />
+        <div class="title">تعديل سريع</div>
+        <button class="icon-order-btn">
+          <svg viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
+          Order now
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+    const openBtn = document.getElementById('openSidebarBtn');
+    const closeBtn = document.getElementById('closeSidebarBtn');
+    const sidebar = document.getElementById('sidebar');
+
+    openBtn.addEventListener('click', () => {
+      sidebar.classList.add('open');
+      startCarousel();
+    });
+
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      stopCarousel();
+    });
+
+    // معرض الصور (Carousel) تلقائي التبديل
+    const carousel = document.getElementById('carousel');
+    const slides = carousel.querySelectorAll('img');
+    let currentIndex = 0;
+    let carouselInterval;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    function startCarousel() {
+      carouselInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+      }, 3000); // كل 3 ثواني
+    }
+
+    function stopCarousel() {
+      clearInterval(carouselInterval);
+    }
+  </script>
+
+</body>
+</html>
+  
 </body>
 </html>
