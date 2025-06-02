@@ -345,15 +345,15 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(65, 106, 132, 0.5); /* #416A84 مع شفافية 50% */
-  display: none;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(65, 106, 132, 0.5); /* اللون #416A84 بشفافية 50% */
+  display: none; /* تظهر فقط عند الضغط */
   justify-content: center;
   align-items: center;
-  z-index: 1001;
-  transition: all 0.3s ease-in-out;
-  backdrop-filter: blur(2px);
+  z-index: 1000;
+  backdrop-filter: blur(3px); /* يعطيها لمسة احترافية */
+  transition: all 0.3s ease; /* مؤثر لطيف */
 }
 
 .form-popup-content {
