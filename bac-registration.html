@@ -1,71 +1,142 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>للطلبة الجدد — بكالوريا 2025</title>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet" />
+  <title>تسجيل بكالوريا 2025</title>
   <style>
     body {
       background-color: #D7E3E5;
-      margin: 0;
       font-family: 'Amiri', serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      direction: rtl;
     }
 
-    .registration-container {
-      max-width: 700px;
-      text-align: center;
-      padding: 40px;
-    }
-
-    .main-title {
+    h1 {
       color: #416A84;
-      font-size: 32px;
-      margin-bottom: 20px;
+      font-size: 28px;
     }
 
-    .description {
+    p {
       color: #416A84;
-      font-size: 18px;
-      line-height: 2;
-      margin-bottom: 40px;
+      line-height: 1.8;
     }
 
     .form-button {
+      margin-top: 20px;
       background-color: #416A84;
       color: #D7E3E5;
-      border: none;
-      padding: 12px 30px;
-      font-size: 18px;
       font-family: 'Amiri', serif;
-      border-radius: 6px;
+      border: none;
+      padding: 12px 24px;
+      font-size: 18px;
       cursor: pointer;
-      transition: 0.3s ease;
+      border-radius: 8px;
     }
 
-    .form-button:hover {
-      background-color: #35576c;
+    /* شاشة الاستمارة */
+    .form-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(65, 106, 132, 0.5); /* الشفافية 50% */
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: slideUp 0.4s ease;
+    }
+
+    .form-overlay.active {
+      display: flex;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+
+    .form-container {
+      background-color: #416A84;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      color: #D7E3E5;
+      font-family: 'Amiri', serif;
+      position: relative;
+    }
+
+    .form-container input,
+    .form-container button.submit {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      font-family: 'Amiri', serif;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .form-container button.submit {
+      background-color: #D7E3E5;
+      color: #416A84;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      color: #D7E3E5;
     }
   </style>
 </head>
 <body>
-  <div class="registration-container">
-    <h1 class="main-title">للطلبة الجدد — بكالوريا 2025</h1>
-    <p class="description">
-      🎉 مبروك عليك النجاح!<br><br>
-      👏 تعبك ما راحش هباءً، وها أنت اليوم تفتح بابًا جديدًا لحياة جامعية واعدة.<br><br>
-      في <strong>RÊVOLA</strong>، نحن نؤمن أن كل بداية ناجحة تحتاج دعم ذكي ومرافقة حقيقية.<br><br>
-      📚 دعنا نكون دليلك الأول نحو اختيار التخصص، ترتيب الرغبات، وتسجيلك الجامعي خطوة بخطوة…<br><br>
-      💡 ولا تنسى: مشوارك ما يتوقفش هنا!<br>
-      نحن معك أيضًا في كل ما تحتاجه من تصميم عروض، وثائق، ملفات، وحتى نصائح جامعية…
-    </p>
-    <button class="form-button" onclick="window.location.href='form-bac2025.html'">
-      ملء الاستمارة
-    </button>
+
+  <h1>للطلبة الجدد — بكالوريا 2025</h1>
+  <p>
+    🎉 مبروك عليك النجاح!<br>
+    👏 تعبك ما راحش هباءً، وها أنت اليوم تفتح بابًا جديدًا لحياة جامعية واعدة.<br>
+    في RÊVOLA، نحن نؤمن أن كل بداية ناجحة تحتاج دعم ذكي ومرافقة حقيقية.<br>
+    📚 دعنا نكون دليلك الأول نحو اختيار التخصص، ترتيب الرغبات، وتسجيلك الجامعي خطوة بخطوة…<br>
+    💡 ولا تنسى: مشوارك ما يتوقفش هنا!<br>
+    نحن معك أيضًا في كل ما تحتاجه من تصميم عروض، وثائق، ملفات، وحتى نصائح جامعية…
+  </p>
+
+  <button class="form-button" onclick="openForm()">ملء الاستمارة</button>
+
+  <!-- شاشة الاستمارة -->
+  <div class="form-overlay" id="formOverlay">
+    <div class="form-container">
+      <span class="close-btn" onclick="closeForm()">✖️</span>
+      <h2>Fill out your form</h2>
+      <p>سنكمل مع المشوار في آخر نقطة ✨</p>
+      <input type="text" placeholder="الاسم">
+      <input type="text" placeholder="اللقب">
+      <input type="text" placeholder="تاريخ ومكان الازدياد">
+      <input type="text" placeholder="رقم التسجيل">
+      <input type="text" placeholder="الرقم السري">
+      <input type="tel" placeholder="رقم الهاتف">
+      <input type="file">
+      <button class="submit">ارسال</button>
+    </div>
   </div>
+
+  <script>
+    function openForm() {
+      document.getElementById('formOverlay').classList.add('active');
+    }
+
+    function closeForm() {
+      document.getElementById('formOverlay').classList.remove('active');
+    }
+  </script>
+
 </body>
 </html>
