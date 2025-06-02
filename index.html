@@ -202,5 +202,23 @@
 
 <a href="#home" class="scroll-top-btn">🩵</a>
 
+<script>
+  function showBacForm() {
+    const screen = document.getElementById("bac-form-screen");
+    screen.classList.add("show");
+
+    // إذا أردتِ إغلاق الشاشة عند الضغط خارجها، يمكنكِ إضافة هذا:
+    screen.addEventListener("click", function (e) {
+      if (e.target === screen) {
+        screen.classList.remove("show");
+        setTimeout(() => screen.style.display = "none", 300);
+      }
+    });
+
+    screen.style.display = "flex";
+  }
+</script>
+
+
 </body>
 </html>
