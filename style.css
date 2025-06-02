@@ -297,6 +297,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
+  color: #D7E3E5;
   background-color: rgba(215, 227, 229, 0.5);  /* #D7E3E5 مع شفافية 50% */
   display: none;                 /* مخفية مبدئيًا */
   justify-content: center;
