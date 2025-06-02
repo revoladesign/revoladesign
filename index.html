@@ -89,59 +89,6 @@
   <img src="revola.logo.png" alt="Revola Logo" class="rotating-logo">
 </section>
 
-<div id="bac-form-screen" class="form-screen">
-  <div class="form-content">
-    
-    <!-- زر الإغلاق ✖️ -->
-    <span class="close-button" onclick="hideBacForm()">✖️</span>
-    
-    <h2>للطلبة الجدد — بكالوريا 2025</h2>
-    <p>
-      🎉 مبروك عليك النجاح!<br><br>
-      👏 تعبك ما راحش هباءً، وها أنت اليوم تفتح بابًا جديدًا لحياة جامعية واعدة.<br><br>
-      في RÊVOLA، نحن نؤمن أن كل بداية ناجحة تحتاج دعم ذكي ومرافقة حقيقية.<br><br>
-      📚 دعنا نكون دليلك الأول نحو اختيار التخصص، ترتيب الرغبات، وتسجيلك الجامعي خطوة بخطوة…<br><br>
-      💡 ولا تنسى: مشوارك ما يتوقفش هنا!<br>
-      نحن معك أيضًا في كل ما تحتاجه من تصميم عروض، وثائق، ملفات، وحتى نصائح جامعية…
-    </p>
-    <button class="form-open-button" onclick="showFormPopup()">ملء الاستمارة</button>
-  </div>
-</div> 
-
-<div id="form-popup" class="form-popup">
-  <div class="form-popup-content">
-    <button class="close-button" onclick="hideFormPopup()">✖️</button>
-    <h2>Fill out your form</h2>
-    <p>سنكمل مع المشوار في آخر نقطة ✨</p>
-
-    <input type="text" placeholder="الاسم">
-    <input type="text" placeholder="اللقب">
-    <input type="text" placeholder="تاريخ ومكان الازدياد">
-    <input type="text" placeholder="رقم التسجيل">
-    <input type="password" placeholder="الرقم السري">
-    <input type="tel" placeholder="رقم الهاتف">
-    <input type="file" accept="image/*" placeholder="تأكيد الدفع">
-
-    <button class="submit-button">إرسال</button>
-  </div>
-</div>
-
-<script>
-  function showBacForm() {
-    document.getElementById("bac-form-screen").classList.add("show");
-  }
-</script>
-
-<script>
-    function showFormPopup() {
-      document.getElementById("form-popup").style.display = "flex";
-    }
-
-    function hideFormPopup() {
-      document.getElementById("form-popup").style.display = "none";
-    }
-  </script>
-
   
   <!-- قسم الدعوة لاكتشاف الخدمات -->
   
