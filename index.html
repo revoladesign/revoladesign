@@ -113,6 +113,34 @@
     document.getElementById("bac-form-screen").classList.add("show");
   }
 </script>
+
+<div id="form-popup" class="form-popup">
+  <div class="form-popup-content">
+    <button class="close-button" onclick="hideFormPopup()">✖️</button>
+    <h2>Fill out your form</h2>
+    <p>سنكمل مع المشوار في آخر نقطة ✨</p>
+
+    <input type="text" placeholder="الاسم">
+    <input type="text" placeholder="اللقب">
+    <input type="text" placeholder="تاريخ ومكان الازدياد">
+    <input type="text" placeholder="رقم التسجيل">
+    <input type="password" placeholder="الرقم السري">
+    <input type="tel" placeholder="رقم الهاتف">
+    <input type="file" accept="image/*">
+
+    <button class="submit-button">إرسال</button>
+  </div>
+</div>
+
+<script>
+  function showFormPopup() {
+    document.getElementById("form-popup").style.display = "flex";
+  }
+
+  function hideFormPopup() {
+    document.getElementById("form-popup").style.display = "none";
+  }
+</script>
    
   
   <!-- قسم الدعوة لاكتشاف الخدمات -->
