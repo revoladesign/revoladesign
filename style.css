@@ -313,6 +313,23 @@ body {
   transform: translateY(0);     /* مؤثر لطيف للظهور من الأسفل */
 }
 
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #416A84;
+  background: none;
+  border: none;
+  font-family: 'Amiri';
+  transition: transform 0.2s ease;
+}
+
+.close-button:hover {
+  transform: scale(1.2);
+}
+
 .form-content {
   background-color: #ffffff;
   padding: 40px;
