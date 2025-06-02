@@ -341,8 +341,7 @@ body {
   color: #416A84;
 }
 
-/* صندوق الاستمارة الكامل */
-/* خلفية الشاشة الشفافة */
+/* صندوق الاستمارة الكامل *//* شاشة الاستمارة */
 .form-popup {
   position: fixed;
   top: 0;
@@ -353,11 +352,10 @@ body {
   display: none;
   justify-content: center;
   align-items: end;
-  z-index: 1000;
-  transition: opacity 0.3s ease;
+  z-index: 9999; /* 🔥 أعلى من شاشة التسجيل */
 }
 
-/* محتوى الاستمارة المنزلق */
+/* محتوى الاستمارة */
 .form-popup-content {
   background: white;
   width: 90%;
@@ -367,9 +365,10 @@ body {
   font-family: 'Amiri', serif;
   transform: translateY(100%);
   animation: slideUp 0.4s ease forwards;
+  position: relative;
 }
 
-/* زر ✖️ */
+/* زر الإغلاق */
 .close-button {
   position: absolute;
   top: 15px;
