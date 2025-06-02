@@ -342,61 +342,75 @@ body {
 }
 
 /* صندوق الاستمارة الكامل */
+/* خلفية الشاشة الشفافة */
 .form-popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(65, 106, 132, 0.5); /* اللون #416A84 بشفافية 50% */
-  display: none; /* تظهر فقط عند الضغط */
+  background-color: rgba(65, 106, 132, 0.5); /* #416A84 بشفافية 50% */
+  display: none;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   z-index: 1000;
-  backdrop-filter: blur(3px); /* يعطيها لمسة احترافية */
-  transition: all 0.3s ease; /* مؤثر لطيف */
+  transition: opacity 0.3s ease;
 }
 
-/* محتوى الاستمارة */
+/* محتوى الاستمارة المنزلق */
 .form-popup-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
+  background: white;
   width: 90%;
   max-width: 400px;
-  text-align: center;
+  border-radius: 12px 12px 0 0;
+  padding: 20px;
   font-family: 'Amiri', serif;
+  transform: translateY(100%);
+  animation: slideUp 0.4s ease forwards;
 }
 
-/* زر الغلق */
+/* زر ✖️ */
 .close-button {
   position: absolute;
-  top: 20px;
-  right: 30px;
-  background: transparent;
-  color: #D7E3E5;
-  font-size: 24px;
+  top: 15px;
+  right: 20px;
+  background: none;
   border: none;
+  font-size: 24px;
+  color: #D7E3E5;
   cursor: pointer;
 }
 
 /* الحقول */
-.form-popup-content input,
-.form-popup-content button {
-  display: block;
+.form-popup-content input {
   width: 100%;
-  margin: 10px 0;
   padding: 10px;
+  margin: 8px 0;
   font-family: 'Amiri', serif;
   border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
 /* زر الإرسال */
 .submit-button {
   background-color: #416A84;
   color: #D7E3E5;
+  font-family: 'Amiri', serif;
+  padding: 10px;
+  width: 100%;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
+}
+
+/* مؤثر الانزلاق */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .revola-invite-section {
