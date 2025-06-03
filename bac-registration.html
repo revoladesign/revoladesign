@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>تسجيل بكالوريا 2025</title>
+  <title>للطلبة الجدد — بكالوريا 2025</title>
   <style>
     body {
       background-color: #D7E3E5;
@@ -10,74 +10,116 @@
       margin: 0;
       padding: 20px;
       direction: rtl;
+      font-size: 20px;
+      max-width: 1200px;
+      margin: auto;
     }
 
     h1 {
       color: #416A84;
-      font-size: 28px;
+      font-size: 32px;
+      margin-bottom: 10px;
     }
 
     p {
       color: #416A84;
       line-height: 1.8;
+      font-size: 20px;
     }
 
-    .form-button {
-      margin-top: 20px;
+    .form-launch-button {
       background-color: #416A84;
       color: #D7E3E5;
       font-family: 'Amiri', serif;
-      border: none;
+      font-size: 20px;
       padding: 12px 24px;
-      font-size: 18px;
+      border: none;
       cursor: pointer;
-      border-radius: 8px;
+      margin-top: 20px;
+      transition: background-color 0.3s;
     }
 
-    /* شاشة الاستمارة */
-    .form-overlay {
+    .form-launch-button:hover {
+      background-color: #36576C;
+    }
+
+    /* شاشة الاستمارة المنبثقة */
+    .form-popup {
       position: fixed;
       top: 0;
+      right: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(65, 106, 132, 0.5); /* الشفافية 50% */
-      display: none;
+      bottom: 0;
+      background-color: rgba(65, 106, 132, 0.5); /* #416A84 بشفافية 50% */
+      display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 1000;
-      animation: slideUp 0.4s ease;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
     }
 
-    .form-overlay.active {
-      display: flex;
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(100%); opacity: 0; }
-      to   { transform: translateY(0); opacity: 1; }
+    .form-popup.active {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .form-container {
       background-color: #416A84;
-      padding: 30px;
+      padding: 40px;
       border-radius: 12px;
-      width: 90%;
-      max-width: 500px;
+      width: 95%;
+      max-width: 600px;
       color: #D7E3E5;
       font-family: 'Amiri', serif;
       position: relative;
+      animation: slideUp 0.6s ease; /* مؤثر لطيف */
+      font-size: 18px;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .form-container h2 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .form-container p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #D7E3E5;
     }
 
     .form-container input,
+    .form-container input[type="file"],
     .form-container button.submit {
       display: block;
       width: 100%;
-      margin: 10px 0;
-      padding: 10px;
-      font-family: 'Amiri', serif;
+      margin-bottom: 15px;
+      padding: 14px;
       border: none;
-      border-radius: 8px;
+      border-radius: 6px;
+      font-size: 18px;
+      font-family: 'Amiri', serif;
+    }
+
+    .form-container input {
+      background-color: #D7E3E5;
+      color: #416A84;
+    }
+
+    .form-container input::placeholder {
+      color: #416A84;
     }
 
     .form-container button.submit {
@@ -90,10 +132,10 @@
     .close-btn {
       position: absolute;
       top: 10px;
-      left: 10px;
-      cursor: pointer;
-      font-size: 20px;
+      left: 15px;
+      font-size: 24px;
       color: #D7E3E5;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -101,40 +143,42 @@
 
   <h1>للطلبة الجدد — بكالوريا 2025</h1>
   <p>
-    🎉 مبروك عليك النجاح!<br>
-    👏 تعبك ما راحش هباءً، وها أنت اليوم تفتح بابًا جديدًا لحياة جامعية واعدة.<br>
-    في RÊVOLA، نحن نؤمن أن كل بداية ناجحة تحتاج دعم ذكي ومرافقة حقيقية.<br>
-    📚 دعنا نكون دليلك الأول نحو اختيار التخصص، ترتيب الرغبات، وتسجيلك الجامعي خطوة بخطوة…<br>
+    🎉 مبروك عليك النجاح!<br><br>
+    👏 تعبك ما راحش هباءً، وها أنت اليوم تفتح بابًا جديدًا لحياة جامعية واعدة.<br><br>
+    في RÊVOLA، نحن نؤمن أن كل بداية ناجحة تحتاج دعم ذكي ومرافقة حقيقية.<br><br>
+    📚 دعنا نكون دليلك الأول نحو اختيار التخصص، ترتيب الرغبات، وتسجيلك الجامعي خطوة بخطوة…<br><br>
     💡 ولا تنسى: مشوارك ما يتوقفش هنا!<br>
     نحن معك أيضًا في كل ما تحتاجه من تصميم عروض، وثائق، ملفات، وحتى نصائح جامعية…
   </p>
 
-  <button class="form-button" onclick="openForm()">ملء الاستمارة</button>
+  <button class="form-launch-button" onclick="showForm()">ملء الاستمارة</button>
 
-  <!-- شاشة الاستمارة -->
-  <div class="form-overlay" id="formOverlay">
+  <!-- شاشة الاستمارة المنبثقة -->
+  <div class="form-popup" id="formPopup">
     <div class="form-container">
-      <span class="close-btn" onclick="closeForm()">✖️</span>
+      <span class="close-btn" onclick="hideForm()">✖️</span>
       <h2>Fill out your form</h2>
       <p>سنكمل مع المشوار في آخر نقطة ✨</p>
+
       <input type="text" placeholder="الاسم">
       <input type="text" placeholder="اللقب">
-      <input type="text" placeholder="تاريخ ومكان الازدياد">
+      <input type="text" placeholder="تاريخ و مكان الازدياد">
       <input type="text" placeholder="رقم التسجيل">
       <input type="text" placeholder="الرقم السري">
-      <input type="tel" placeholder="رقم الهاتف">
-      <input type="file">
-      <button class="submit">ارسال</button>
+      <input type="text" placeholder="رقم الهاتف">
+      <input type="file" accept="image/*">
+
+      <button class="submit">إرسال</button>
     </div>
   </div>
 
   <script>
-    function openForm() {
-      document.getElementById('formOverlay').classList.add('active');
+    function showForm() {
+      document.getElementById("formPopup").classList.add("active");
     }
 
-    function closeForm() {
-      document.getElementById('formOverlay').classList.remove('active');
+    function hideForm() {
+      document.getElementById("formPopup").classList.remove("active");
     }
   </script>
 
