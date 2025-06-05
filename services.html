@@ -1,872 +1,358 @@
-
-  <!DOCTYPE html>
-<html lang="ar">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RÊVOLA SERVICES with Sidebar</title>
+  <meta charset="UTF-8">
+  <title>RÊVOLA SERVICES</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #D7E3E5;
       margin: 0;
-      padding: 40px 20px;
-      direction: rtl;
+      font-family: 'Amiri', serif;
       color: #416A84;
       text-align: center;
-      overflow-x: hidden; /* منع تمرير عرضي */
     }
 
     h1 {
-      font-family: 'Amiri', serif;
-      font-size: 3rem;
-      color: #416A84;
-      margin-bottom: 10px;
+      margin-top: 30px;
+      font-size: 2.8rem;
     }
 
     p.description {
-      font-family: 'Amiri', serif;
-      font-size: 1.4rem;
-      color: #416A84;
+      font-size: 1.2rem;
       margin-bottom: 40px;
     }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 30px 20px;
-      max-width: 1200px;
-      margin: 0 auto 60px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+      max-width: 1000px;
+      margin: auto;
     }
 
     .service-item {
-      background: none;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    .service-image {
-      width: 150px;
-      height: 150px;
-      border-radius: 20px;
+    .service-item img {
+      width: 130px;
+      height: 130px;
+      border-radius: 12px;
       object-fit: cover;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 8px rgba(65, 106, 132, 0.3);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .service-image:hover {
-      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    .order-button {
-      font-family: 'Amiri', serif;
-      font-size: 1.1rem;
+    .service-btn {
+      margin-top: 10px;
       background-color: #416A84;
       color: #D7E3E5;
       border: none;
-      padding: 8px 20px;
-      border-radius: 12px;
+      padding: 6px 16px;
+      font-size: 1rem;
+      border-radius: 8px;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: background-color 0.3s ease;
-      user-select: none;
-      text-decoration: none;
-    }
-    .order-button:hover {
-      background-color: #2b4a60;
-    }
-
-    .order-icon {
-      width: 18px;
-      height: 18px;
-      fill: #D7E3E5;
+      font-family: 'Amiri', serif;
     }
 
     /* Sidebar */
     .sidebar {
       position: fixed;
       top: 0;
-      right: -400px; /* مخفية تماماً */
+      right: -100%;
       width: 400px;
-      height: 100vh;
-      background-color: rgba(79, 122, 146, 0.5); /* لون #4F7A92 بشفافية 50% */
-      backdrop-filter: blur(8px);
-      box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+      height: 100%;
+      background-color: rgba(65,106,132,0.5);
+      backdrop-filter: blur(6px);
       color: #E4EDEA;
-      padding: 30px 20px;
-      font-family: 'Amiri', serif;
-      text-align: center;
-      transition: right 0.5s ease; /* مؤثر انزلاق لطيف */
+      padding: 20px;
+      box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+      transition: right 0.5s ease;
       z-index: 1000;
-      display: flex;
-      flex-direction: column;
       overflow-y: auto;
     }
+
     .sidebar.open {
-      right: 0; /* تظهر */
+      right: 0;
     }
 
     .sidebar h2 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    .sidebar p {
-      font-size: 1.3rem;
-      margin-bottom: 30px;
+      margin-top: 0;
+      font-size: 2rem;
     }
 
-    /* معرض الصور */
-    .carousel {
-      position: relative;
-      width: 100%;
-      height: 180px;
-      margin-bottom: 30px;
-      overflow: hidden;
-      border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    .carousel img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      position: absolute;
-      top: 0; left: 0;
-      opacity: 0;
-      transition: opacity 1s ease;
-      border-radius: 20px;
-    }
-    .carousel img.active {
-      opacity: 1;
-      position: relative;
-    }
-
-    /* الأيقونتين */
-    .icon-container {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-bottom: 30px;
-    }
-    .icon-box {
-      background-color: rgba(53, 97, 120, 0.5); /* #356178 بشفافية 50% */
-      padding: 15px 20px;
-      border-radius: 20px;
-      width: 160px;
-      color: #E4EDEA;
-      font-family: 'Amiri', serif;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: background-color 0.3s ease;
-    }
-    .icon-box:hover {
-      background-color: rgba(53, 97, 120, 0.8);
-    }
-    .icon-box img {
-      width: 80px;
-      height: 80px;
-      border-radius: 12px;
-      object-fit: cover;
-    }
-    .icon-box .title {
-      font-size: 1.2rem;
-      color: #E4EDEA;
-    }
-
-    /* زر Order now داخل الأيقونات */
-    .icon-order-btn {
-      font-family: 'Amiri', serif;
-      font-size: 1rem;
-      background-color: #E4EDEA;
-      color: #4F7A92;
-      padding: 6px 18px;
-      border-radius: 12px;
-      user-select: none;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
-      justify-content: center;
-    }
-    .icon-order-btn:hover {
-      background-color: #dbe5e9;
-    }
-    .icon-order-btn svg {
-      width: 14px;
-      height: 14px;
-      fill: #4F7A92;
-    }
-
-    /* زر غلق القائمة */
     .sidebar-close {
       position: absolute;
       top: 15px;
       left: 15px;
       background: none;
       border: none;
-      color: #E4EDEA;
-      font-size: 2rem;
+      color: white;
+      font-size: 1.5rem;
       cursor: pointer;
-      user-select: none;
-      padding: 0;
-    }
-
-  </style>
-</head>
-<body>
-
-  <h1>RÊVOLA SERVICES</h1>
-  <p class="description">خدماتنا المصممة خصيصًا لك — لأن كل فكرة تحتاج تصميم يعبّر عنها!</p>
-
-  <section class="services-grid">
-    <div class="service-item">
-      <img src="icon1.png" alt="Service 1" class="service-image" />
-      <button class="order-button" id="openSidebarBtn">
-        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
-        Presentations
-      </button>
-    </div>
-    <!-- باقي الخدمات بدون تفاعل -->
-    <div class="service-item">
-      <img src="icon2.png" alt="Service 2" class="service-image" />
-      <button class="order-button" id="openSidebarBtn">
-        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
-        Prints
-      </a>
-    </div>
-    <div class="service-item">
-      <img src="icon3.png" alt="Service 3" class="service-image" />
-      <button class="order-button" id="openSidebarBtn">
-        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
-        Cards
-      </a>
-    </div>
-    <div class="service-item">
-      <img src="icon4.png" alt="Service 4" class="service-image" />
-      <button class="order-button" id="openSidebarBtn">
-        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
-        Logos
-      </a>
-    </div>
-    <div class="service-item">
-      <img src="icon5.png" alt="Service 5" class="service-image" />
-      <a href="#" class="order-button">
-        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
-        Diplômes
-      </a>
-    </div>
-    <div class="service-item">
-      <img src="icon6.png" alt="Service 6" class="service-image" />
-      <a href="#" class="order-button">
-        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
-        Order now
-      </a>
-    </div>
-    <div class="service-item">
-      <img src="icon7.png" alt="Service 7" class="service-image" />
-      <a href="#" class="order-button">
-        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
-        Order now
-      </a>
-    </div>
-    <div class="service-item">
-      <img src="icon8.png" alt="Service 8" class="service-image" />
-      <a href="#" class="order-button">
-        <svg class="order-icon" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
-        Docs
-      </a>
-    </div>
-  </section>
-
-  <!-- القائمة الجانبية -->
-  <aside class="sidebar" id="sidebar">
-    <button class="sidebar-close" id="closeSidebarBtn" aria-label="Close Sidebar">&times;</button>
-    <h2>PRESENTATIONS</h2>
-    <p>نحو عرض تقديمي يعبّر عن فكرتك باحتراف✨</p>
-
-    <div class="carousel" id="carousel">
-      <img src="presentation1.jpg" class="active" alt="Presentation 1" />
-      <img src="presentation2.jpg" alt="Presentation 2" />
-      <img src="presentation3.jpg" alt="Presentation 3" />
-    </div>
-
-    <div class="icon-container">
-      <div class="icon-box">
-        <img src="iconA.jpg" alt="Icon A" />
-        <div class="title">Presentations  1000DZ</div>
-        <button class="icon-order-btn">
-          <svg viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
-          Order now
-        </button>
-      </div>
-      <div class="icon-box">
-        <img src="iconB.jpg" alt="Icon B" />
-        <div class="title">Very simple   700DZ</div>
-        <button class="icon-order-btn">
-          <svg viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>
-          Order now
-        </button>
-      </div>
-    </div>
-  </aside>
-
-  <script>
-    const openBtn = document.getElementById('openSidebarBtn');
-    const closeBtn = document.getElementById('closeSidebarBtn');
-    const sidebar = document.getElementById('sidebar');
-
-    openBtn.addEventListener('click', () => {
-      sidebar.classList.add('open');
-      startCarousel();
-    });
-
-    closeBtn.addEventListener('click', () => {
-      sidebar.classList.remove('open');
-      stopCarousel();
-    });
-
-    // معرض الصور (Carousel) تلقائي التبديل
-    const carousel = document.getElementById('carousel');
-    const slides = carousel.querySelectorAll('img');
-    let currentIndex = 0;
-    let carouselInterval;
-
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-    }
-
-    function startCarousel() {
-      carouselInterval = setInterval(() => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
-      }, 3000); // كل 3 ثواني
-    }
-
-    function stopCarousel() {
-      clearInterval(carouselInterval);
-    }
-  </script>
-
-<!-- زر فتح الشاشة -->
-<button class="trigger-order-btn" onclick="openOrderForm()">Order now</button>
-
-<!-- الشاشة المنبثقة -->
-<div id="orderOverlay" class="order-overlay">
-  <div class="order-content">
-    <span class="close-order" onclick="closeOrderForm()">✖</span>
-    <h2>The request</h2>
-    <p>للطلب يرجى ملء الاستمارة</p>
-
-    <form>
-      <input type="text" placeholder="Subject of the offer" required />
-      
-      <select required>
-        <option disabled selected>What colors do you prefer in the exhibition?</option>
-        <option>Pastel</option>
-        <option>Dirt</option>
-        <option>Neutral</option>
-        <option>Quiet</option>
-        <option>Thermal</option>
-      </select>
-      
-      <textarea placeholder="Describe your offer" rows="4" required></textarea>
-      
-      <button type="submit">Order now</button>
-    </form>
-  </div>
-</div>
-
-<style>
-  .trigger-order-btn {
-    display: block;
-    margin: 40px auto;
-    padding: 12px 25px;
-    background-color: #4F7A92;
-    color: #fff;
-    border: none;
-    font-family: 'Amiri', serif;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .trigger-order-btn:hover {
-    background-color: #395c71;
-  }
-
-  .order-overlay {
-    position: fixed;
-    left: 0;
-    bottom: -100%;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(228, 237, 234, 0.5); /* اللون + الشفافية 50% */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: bottom 0.6s ease; /* المؤثر الناعم من الأسفل للأعلى */
-  }
-
-  .order-overlay.active {
-    bottom: 0;
-  }
-
-  .order-content {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 500px;
-    font-family: 'Amiri', serif;
-    color: #4F7A92;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    position: relative;
-  }
-
-  .close-order {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 20px;
-    cursor: pointer;
-  }
-
-  .order-content input,
-  .order-content select,
-  .order-content textarea {
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #4F7A92;
-    border-radius: 5px;
-    background-color: rgba(79, 122, 146, 0.5); /* شفاف 50% */
-    color: #4F7A92;
-    font-family: 'Amiri', serif;
-  }
-
-  .order-content button[type="submit"] {
-    background-color: #4F7A92;
-    color: white;
-    padding: 10px 25px;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
-    font-family: 'Amiri', serif;
-  }
-
-  .order-content button[type="submit"]:hover {
-    background-color: #395c71;
-  }
-</style>
-
-<script>
-  function openOrderForm() {
-    document.getElementById("orderOverlay").classList.add("active");
-  }
-
-  function closeOrderForm() {
-    document.getElementById("orderOverlay").classList.remove("active");
-  }
-</script>
-
-
-  <!-- زر فتح الشاشة --><!-- شاشة الطلب المنبثقة -->
-<div class="form-overlay" id="orderForm">
-  <div class="form-container">
-    <button class="close-btn" onclick="closeForm()">✖</button>
-    <h2>The request</h2>
-    <p>للطلب يرجى ملء الاستمارة</p>
-
-    <form>
-      <input type="text" placeholder="Subject of the offer" required>
-      
-      <select required>
-        <option value="">What colors do you prefer in the exhibition?</option>
-        <option value="pastel">Pastel</option>
-        <option value="dirt">Dirt</option>
-        <option value="neutral">Neutral</option>
-        <option value="quiet">Quiet</option>
-        <option value="thermal">Thermal</option>
-      </select>
-      
-      <label for="language" class="form-label">Language</label>
-<select id="language" name="language" class="form-input">
-  <option value="english">English</option>
-  <option value="french">French</option>
-  <option value="arabic">Arabic</option>
-</select>
-
-
-      <textarea placeholder="Describe your offer" rows="4" required></textarea>
-      
-      <button type="submit" class="send-order-btn">Order now</button>
-    </form>
-  </div>
-</div>
-
-<style>
-  .form-overlay {
-    position: fixed;
-    bottom: -100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(228, 237, 234, 0.5); /* #E4EDEA بشفافية 50% */
-    backdrop-filter: blur(6px);
-    transition: bottom 0.5s ease;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .form-overlay.active {
-    bottom: 0;
-  }
-
-  .form-container {
-    background-color: #ffffff;
-    padding: 30px;
-    width: 90%;
-    max-width: 450px;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    font-family: 'Amiri', serif;
-    color: #4F7A92;
-    position: relative;
-    text-align: center;
-    direction: rtl;
-  }
-  
-  .form-container h2 {
-  color: #416A84; /* ← اختاري اللون الذي ترغبين به */
-}
-
-.form-container p {
-  color: #416A84;
-}
-
-  .form-container h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-
-  .form-container p {
-    font-size: 1.5rem;
-    margin-bottom: 25px;
-  }
-
-  .form-container input,
-  .form-container select,
-  .form-container textarea {
-    width: 90%;
-    margin-bottom: 15px;
-    padding: 10px 14px;
-    font-family: 'Amiri', serif;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: rgba(79, 122, 146, 0.5);
-    color: #fff;
-  }
-
-  .form-container textarea {
-    resize: none;
-  }
-
-  .send-order-btn {
-    background-color: #4F7A92;
-    color: white;
-    padding: 10px 24px;
-    border: none;
-    border-radius: 10px;
-    font-family: 'Amiri', serif;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .send-order-btn:hover {
-    background-color: #3a617c;
-  }
-
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    color: #4F7A92;
-    cursor: pointer;
-  }
-</style>
-
-<script>
-  function openForm() {
-    document.getElementById('orderForm').classList.add('active');
-  }
-
-  function closeForm() {
-    document.getElementById('orderForm').classList.remove('active');
-  }
-
-  // ربط كل الأزرار التي لديها الكلاس "icon-order-btn"
-  document.querySelectorAll('.icon-order-btn').forEach(btn => {
-    btn.addEventListener('click', openForm);
-  });
-</script>
-
-  <!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RÊVOLA Services</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
-
-    body {
-      font-family: 'Amiri', serif;
-      background-color: #D7E3E5;
-      color: #416A84;
-      direction: rtl;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    .service-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      margin-top: 50px;
-    }
-
-    .icon-order-btn {
-      font-family: 'Amiri', serif;
-      font-size: 1.1rem;
-      background-color: #4F7A92;
-      color: #E4EDEA;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .icon-order-btn:hover {
-      background-color: #3b5e74;
-    }
-
-    /* شاشة العرض والاستمارة */
-    .modal-overlay {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(228, 237, 234, 0.5);
-      display: none;
-      justify-content: center;
-      align-items: flex-end;
-      z-index: 9999;
-      animation: slideUp 0.5s ease forwards;
-    }
-
-    @keyframes slideUp {
-      from {
-        transform: translateY(100%);
-      }
-      to {
-        transform: translateY(0);
-      }
-    }
-
-    .modal-content {
-      background-color: white;
-      padding: 30px;
-      border-radius: 25px 25px 0 0;
-      width: 100%;
-      max-width: 500px;
-      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
-      text-align: center;
-      font-family: 'Amiri', serif;
-      position: relative;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 25px;
-      font-size: 24px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #4F7A92;
     }
 
     .carousel {
-      width: 100%;
+      margin: 20px 0;
       height: 180px;
       overflow: hidden;
-      border-radius: 15px;
-      margin-bottom: 20px;
-      position: relative;
+      border-radius: 10px;
     }
 
     .carousel img {
       width: 100%;
-      height: 100%;
+      height: 180px;
       object-fit: cover;
-      position: absolute;
-      top: 0; left: 0;
-      opacity: 0;
-      transition: opacity 1s ease;
+      display: none;
     }
 
     .carousel img.active {
-      opacity: 1;
-      position: relative;
+      display: block;
     }
 
-    .form-title {
-      font-size: 2rem;
-      color: #4F7A92;
-      text-align: left;
+    .icon-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
-    .form-subtitle {
-      color: #4F7A92;
-      margin-bottom: 20px;
-      text-align: left;
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 10px;
-      border: none;
-      background-color: rgba(79, 122, 146, 0.5);
-      color: #fff;
-      font-family: 'Amiri', serif;
-      text-align: right;
-    }
-
-    .submit-btn {
-      background-color: #4F7A92;
-      color: #E4EDEA;
-      border: none;
-      padding: 10px 25px;
+    .icon-box {
+      background-color: rgba(53,97,120,0.5);
+      padding: 10px;
       border-radius: 12px;
+      width: 160px;
+      font-family: 'Amiri', serif;
+      color: white;
+    }
+
+    .icon-box img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .icon-box .desc {
+      margin: 5px 0;
+    }
+
+    .icon-box .order-now {
+      background: none;
+      border: none;
+      color: #E4EDEA;
       font-family: 'Amiri', serif;
       cursor: pointer;
+      margin-top: 5px;
     }
 
-    .submit-btn:hover {
-      background-color: #3c6075;
+    /* Popup Form */
+    .form-popup {
+      position: fixed;
+      bottom: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 350px;
+      background-color: rgba(228,237,234,0.9);
+      padding: 20px;
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.2);
+      transition: bottom 0.5s ease;
+      z-index: 2000;
+    }
+
+    .form-popup.open {
+      bottom: 0;
+    }
+
+    .form-popup h3 {
+      margin-top: 0;
+      font-family: 'Amiri', serif;
+      color: #4F7A92;
+      text-align: left;
+    }
+
+    .form-popup p {
+      color: #4F7A92;
+      font-family: 'Amiri', serif;
+      text-align: left;
+    }
+
+    .form-group {
+      margin: 10px 0;
+      text-align: left;
+      color: #4F7A92;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group select,
+    .form-group textarea,
+    .form-group input[type="file"] {
+      width: 100%;
+      padding: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: 'Amiri', serif;
+    }
+
+    .send-btn {
+      background-color: #416A84;
+      color: #D7E3E5;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Amiri', serif;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .form-close {
+      position: absolute;
+      top: 8px;
+      left: 12px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: #4F7A92;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-<h1>خدماتنا</h1>
+<h1>RÊVOLA SERVICES</h1>
+<p class="description">خدماتنا المصممة خصيصًا لك — لأن كل فكرة تحتاج تصميم يعبّر عنها!</p>
 
-<div class="service-buttons">
-  <button class="icon-order-btn" data-service="Presentations">Presentations</button>
-  <button class="icon-order-btn" data-service="Prints">Prints</button>
-  <button class="icon-order-btn" data-service="Cards">Cards</button>
-  <button class="icon-order-btn" data-service="Logos">Logos</button>
-  <button class="icon-order-btn" data-service="Diplômes">Diplômes</button>
-  <button class="icon-order-btn" data-service="Social media">Social media</button>
-  <button class="icon-order-btn" data-service="Videos">Videos</button>
-  <button class="icon-order-btn" data-service="Docs">Docs</button>
+<div class="services-grid">
+  <div class="service-item">
+    <img src="https://via.placeholder.com/150?text=Icon1" alt="icon1">
+    <button class="service-btn" onclick="openSidebar('Presentations')">Presentations</button>
+  </div>
+  <div class="service-item">
+    <img src="https://via.placeholder.com/150?text=Icon2" alt="icon2">
+    <button class="service-btn" onclick="openSidebar('Prints')">Prints</button>
+  </div>
+  <!-- أضف البقية بنفس النمط -->
 </div>
 
-<!-- الشاشة المنبثقة -->
-<div id="service-modal" class="modal-overlay">
-  <div class="modal-content">
-    <button class="close-btn" onclick="closeModal()">×</button>
-    <div class="carousel" id="carousel">
-      <!-- الصور ستُضاف هنا -->
+<div class="sidebar" id="sidebar">
+  <button class="sidebar-close" onclick="closeSidebar()">✖️</button>
+  <h2 id="sidebar-title">Title</h2>
+  <p id="sidebar-desc">وصف خاص بالخدمة</p>
+
+  <div class="carousel" id="carousel">
+    <img src="https://via.placeholder.com/400x180?text=Image1" class="active">
+    <img src="https://via.placeholder.com/400x180?text=Image2">
+    <img src="https://via.placeholder.com/400x180?text=Image3">
+  </div>
+
+  <div class="icon-boxes">
+    <div class="icon-box">
+      <img src="https://via.placeholder.com/150x100?text=A">
+      <div class="desc">Simple</div>
+      <button class="order-now" onclick="openForm()">Order now</button>
     </div>
-    <h2 class="form-title">The request</h2>
-    <p class="form-subtitle">لطلب الخدمة يرجى ملء الاستمارة</p>
-    <form>
-      <input type="text" placeholder="Subject of the offer" class="form-input" />
-      <select class="form-input">
-        <option disabled selected>What colors do you prefer?</option>
-        <option>Pastel</option>
-        <option>Dirt</option>
-        <option>Neutral</option>
-        <option>Quiet</option>
-        <option>Thermal</option>
-      </select>
-      <select class="form-input">
-        <option disabled selected>Language</option>
-        <option>English</option>
-        <option>French</option>
-        <option>Arabic</option>
-      </select>
-      <textarea placeholder="Describe your offer" class="form-input" rows="4"></textarea>
-      <button type="submit" class="submit-btn">Order now</button>
-    </form>
+    <div class="icon-box">
+      <img src="https://via.placeholder.com/150x100?text=B">
+      <div class="desc">Simple</div>
+      <button class="order-now" onclick="openForm()">Order now</button>
+    </div>
   </div>
 </div>
 
+<div class="form-popup" id="formPopup">
+  <button class="form-close" onclick="closeForm()">✖️</button>
+  <h3>The request</h3>
+  <p>للطلب يرجى ملء الاستمارة</p>
+  <div class="form-group">
+    <label>Subject of the offer</label>
+    <input type="text" placeholder="اكتب الموضوع">
+  </div>
+  <div class="form-group">
+    <label>What colors do you prefer in the exhibition?</label>
+    <select>
+      <option>Pastel</option>
+      <option>Dirt</option>
+      <option>Neutral</option>
+      <option>Quiet</option>
+      <option>Thermal</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Describe your offer</label>
+    <textarea rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label>يجب التأكد انك دفعت عن طريق صورة الدفع</label>
+    <input type="file">
+  </div>
+  <button class="send-btn">إرسال</button>
+</div>
+
 <script>
-  const imageSets = {
-    Presentations: ["https://via.placeholder.com/500x180?text=Presentations+1", "https://via.placeholder.com/500x180?text=Presentations+2"],
-    Prints: ["https://via.placeholder.com/500x180?text=Prints+1", "https://via.placeholder.com/500x180?text=Prints+2"],
-    Cards: ["https://via.placeholder.com/500x180?text=Cards+1", "https://via.placeholder.com/500x180?text=Cards+2"],
-    Logos: ["https://via.placeholder.com/500x180?text=Logos+1", "https://via.placeholder.com/500x180?text=Logos+2"],
-    Diplômes: ["https://via.placeholder.com/500x180?text=Diplômes+1", "https://via.placeholder.com/500x180?text=Diplômes+2"],
-    "Social media": ["https://via.placeholder.com/500x180?text=Social+Media+1", "https://via.placeholder.com/500x180?text=Social+Media+2"],
-    Videos: ["https://via.placeholder.com/500x180?text=Videos+1", "https://via.placeholder.com/500x180?text=Videos+2"],
-    Docs: ["https://via.placeholder.com/500x180?text=Docs+1", "https://via.placeholder.com/500x180?text=Docs+2"]
+  const sidebar = document.getElementById('sidebar');
+  const formPopup = document.getElementById('formPopup');
+  const sidebarTitle = document.getElementById('sidebar-title');
+  const sidebarDesc = document.getElementById('sidebar-desc');
+  const carousel = document.getElementById('carousel');
+  let currentImg = 0;
+
+  const servicesInfo = {
+    Presentations: {
+      desc: 'عروض تقديمية مميزة ومصممة بدقة.',
+      images: [
+        'https://via.placeholder.com/400x180?text=Presentations1',
+        'https://via.placeholder.com/400x180?text=Presentations2',
+        'https://via.placeholder.com/400x180?text=Presentations3'
+      ]
+    },
+    Prints: {
+      desc: 'تصاميم للطباعة عالية الجودة.',
+      images: [
+        'https://via.placeholder.com/400x180?text=Prints1',
+        'https://via.placeholder.com/400x180?text=Prints2',
+        'https://via.placeholder.com/400x180?text=Prints3'
+      ]
+    }
   };
 
-  function openModal(serviceName) {
-    const carousel = document.getElementById("carousel");
-    carousel.innerHTML = imageSets[serviceName].map((src, i) =>
-      `<img src="${src}" class="${i === 0 ? 'active' : ''}" alt="${serviceName}">`
-    ).join('');
-    document.getElementById("service-modal").style.display = "flex";
-  }
+  function openSidebar(serviceName) {
+    sidebarTitle.textContent = serviceName;
+    sidebarDesc.textContent = servicesInfo[serviceName].desc;
 
-  function closeModal() {
-    document.getElementById("service-modal").style.display = "none";
-  }
-
-  document.querySelectorAll(".icon-order-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const serviceName = btn.getAttribute("data-service");
-      openModal(serviceName);
+    const imgs = carousel.querySelectorAll('img');
+    imgs.forEach((img, index) => {
+      img.src = servicesInfo[serviceName].images[index];
+      img.classList.remove('active');
     });
-  });
-</script>
+    imgs[0].classList.add('active');
+    sidebar.classList.add('open');
+  }
 
-</body>
-</html>
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+  }
 
+  function openForm() {
+    formPopup.classList.add('open');
+  }
 
+  function closeForm() {
+    formPopup.classList.remove('open');
+  }
+
+  setInterval(() => {
+    const imgs = carousel.querySelectorAll('img');
+    imgs[currentImg].classList.remove('active');
+    currentImg = (currentImg + 1) % imgs.length;
+    imgs[currentImg].classList.add('active');
+  }, 3000);
 </script>
 </body>
 </html>
