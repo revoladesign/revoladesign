@@ -1,36 +1,37 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RÊVOLA SERVICES</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
 
     body {
-      background-color: #D7E3E5;
       margin: 0;
-      font-family: 'Amiri', serif;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #D7E3E5;
       color: #416A84;
       text-align: center;
     }
 
     h1 {
+      font-family: 'Amiri', serif;
+      font-size: 3rem;
       margin-top: 30px;
-      font-size: 2.8rem;
     }
 
-    p.description {
+    .description {
+      font-family: 'Amiri', serif;
       font-size: 1.2rem;
       margin-bottom: 40px;
     }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
-      padding: 0 20px;
-      max-width: 1000px;
-      margin: auto;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      padding: 20px 40px;
     }
 
     .service-item {
@@ -42,38 +43,37 @@
     .service-item img {
       width: 130px;
       height: 130px;
-      border-radius: 12px;
       object-fit: cover;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      margin-bottom: 10px;
     }
 
-    .service-btn {
-      margin-top: 10px;
+    .service-button {
+      font-family: 'Amiri', serif;
       background-color: #416A84;
       color: #D7E3E5;
       border: none;
-      padding: 6px 16px;
-      font-size: 1rem;
-      border-radius: 8px;
+      padding: 8px 16px;
+      border-radius: 10px;
       cursor: pointer;
-      font-family: 'Amiri', serif;
+      font-size: 1rem;
     }
 
-    /* Sidebar */
     .sidebar {
       position: fixed;
       top: 0;
       right: -100%;
       width: 400px;
-      height: 100%;
-      background-color: rgba(65,106,132,0.5);
-      backdrop-filter: blur(6px);
-      color: #E4EDEA;
+      height: 100vh;
+      background-color: rgba(65, 106, 132, 0.5);
+      backdrop-filter: blur(8px);
       padding: 20px;
-      box-shadow: -4px 0 12px rgba(0,0,0,0.2);
-      transition: right 0.5s ease;
+      box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
+      transition: right 0.6s ease;
       z-index: 1000;
       overflow-y: auto;
+      color: white;
+      font-family: 'Amiri', serif;
     }
 
     .sidebar.open {
@@ -81,145 +81,119 @@
     }
 
     .sidebar h2 {
-      margin-top: 0;
       font-size: 2rem;
+      margin-bottom: 10px;
     }
 
-    .sidebar-close {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .carousel {
-      margin: 20px 0;
-      height: 180px;
-      overflow: hidden;
-      border-radius: 10px;
+    .sidebar p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
     }
 
     .carousel img {
       width: 100%;
       height: 180px;
+      border-radius: 12px;
+      margin-bottom: 20px;
       object-fit: cover;
-      display: none;
     }
 
-    .carousel img.active {
-      display: block;
-    }
-
-    .icon-boxes {
+    .options {
       display: flex;
-      justify-content: center;
       gap: 20px;
+      justify-content: center;
       flex-wrap: wrap;
     }
 
-    .icon-box {
-      background-color: rgba(53,97,120,0.5);
+    .option-box {
+      background-color: rgba(53, 97, 120, 0.5);
+      border-radius: 14px;
+      width: 140px;
       padding: 10px;
-      border-radius: 12px;
-      width: 160px;
-      font-family: 'Amiri', serif;
+      text-align: center;
       color: white;
     }
 
-    .icon-box img {
-      width: 100%;
-      border-radius: 8px;
+    .option-box img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
     }
 
-    .icon-box .desc {
-      margin: 5px 0;
-    }
-
-    .icon-box .order-now {
-      background: none;
-      border: none;
-      color: #E4EDEA;
-      font-family: 'Amiri', serif;
-      cursor: pointer;
+    .option-box .desc {
       margin-top: 5px;
     }
 
-    /* Popup Form */
+    .option-box button {
+      margin-top: 8px;
+      font-family: 'Amiri', serif;
+      background-color: #E4EDEA;
+      color: #4F7A92;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+
     .form-popup {
       position: fixed;
       bottom: -100%;
       left: 50%;
       transform: translateX(-50%);
-      width: 350px;
-      background-color: rgba(228,237,234,0.9);
+      background-color: #D7E3E5;
       padding: 20px;
-      border-radius: 16px 16px 0 0;
-      box-shadow: 0 -4px 16px rgba(0,0,0,0.2);
-      transition: bottom 0.5s ease;
+      border-radius: 14px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      width: 300px;
       z-index: 2000;
+      text-align: center;
+      transition: bottom 0.6s ease;
     }
 
-    .form-popup.open {
-      bottom: 0;
-    }
-
-    .form-popup h3 {
-      margin-top: 0;
-      font-family: 'Amiri', serif;
-      color: #4F7A92;
-      text-align: left;
+    .form-popup.active {
+      bottom: 100px;
     }
 
     .form-popup p {
-      color: #4F7A92;
       font-family: 'Amiri', serif;
-      text-align: left;
-    }
-
-    .form-group {
-      margin: 10px 0;
-      text-align: left;
       color: #4F7A92;
+      margin-bottom: 10px;
     }
 
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
+    .form-popup input[type="file"] {
+      margin-bottom: 10px;
     }
 
-    .form-group select,
-    .form-group textarea,
-    .form-group input[type="file"] {
-      width: 100%;
-      padding: 6px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+    .form-popup button {
       font-family: 'Amiri', serif;
-    }
-
-    .send-btn {
       background-color: #416A84;
       color: #D7E3E5;
-      padding: 8px 16px;
       border: none;
+      padding: 6px 16px;
       border-radius: 10px;
-      font-family: 'Amiri', serif;
       cursor: pointer;
-      margin-top: 10px;
     }
 
-    .form-close {
+    .form-popup .close-form {
       position: absolute;
       top: 8px;
-      left: 12px;
+      left: 10px;
+      font-size: 20px;
       background: none;
       border: none;
-      font-size: 20px;
-      color: #4F7A92;
+      color: #416A84;
       cursor: pointer;
     }
   </style>
@@ -230,108 +204,147 @@
 <p class="description">خدماتنا المصممة خصيصًا لك — لأن كل فكرة تحتاج تصميم يعبّر عنها!</p>
 
 <div class="services-grid">
+  <!-- 8 خدمات -->
   <div class="service-item">
-    <img src="https://via.placeholder.com/150?text=Icon1" alt="icon1">
-    <button class="service-btn" onclick="openSidebar('Presentations')">Presentations</button>
+    <img src="icon1.png" alt="Presentations">
+    <button class="service-button" onclick="openSidebar('presentations')">presentations</button>
   </div>
   <div class="service-item">
-    <img src="https://via.placeholder.com/150?text=Icon2" alt="icon2">
-    <button class="service-btn" onclick="openSidebar('Prints')">Prints</button>
+    <img src="icon2.png" alt="Prints">
+    <button class="service-button" onclick="openSidebar('prints')">prints</button>
   </div>
-  <!-- أضف البقية بنفس النمط -->
+  <div class="service-item">
+    <img src="icon3.png" alt="Cards">
+    <button class="service-button" onclick="openSidebar('cards')">Cards</button>
+  </div>
+  <div class="service-item">
+    <img src="icon4.png" alt="Logos">
+    <button class="service-button" onclick="openSidebar('logos')">Logos</button>
+  </div>
+  <div class="service-item">
+    <img src="icon5.png" alt="Diplômes">
+    <button class="service-button" onclick="openSidebar('diplomes')">Diplômes</button>
+  </div>
+  <div class="service-item">
+    <img src="icon6.png" alt="Social media">
+    <button class="service-button" onclick="openSidebar('social')">Social media</button>
+  </div>
+  <div class="service-item">
+    <img src="icon7.png" alt="Videos">
+    <button class="service-button" onclick="openSidebar('videos')">Vidéos</button>
+  </div>
+  <div class="service-item">
+    <img src="icon8.png" alt="Docs">
+    <button class="service-button" onclick="openSidebar('docs')">Docs</button>
+  </div>
 </div>
 
+<!-- الشريط الجانبي -->
 <div class="sidebar" id="sidebar">
-  <button class="sidebar-close" onclick="closeSidebar()">✖️</button>
+  <button class="close-btn" onclick="closeSidebar()">✖️</button>
   <h2 id="sidebar-title">Title</h2>
-  <p id="sidebar-desc">وصف خاص بالخدمة</p>
-
-  <div class="carousel" id="carousel">
-    <img src="https://via.placeholder.com/400x180?text=Image1" class="active">
-    <img src="https://via.placeholder.com/400x180?text=Image2">
-    <img src="https://via.placeholder.com/400x180?text=Image3">
+  <p id="sidebar-desc">Service description here</p>
+  <div class="carousel">
+    <img id="carousel-img" src="presentations1.png" alt="">
   </div>
-
-  <div class="icon-boxes">
-    <div class="icon-box">
-      <img src="https://via.placeholder.com/150x100?text=A">
+  <div class="options">
+    <div class="option-box">
+      <img id="option1-img" src="simple1.png" alt="">
       <div class="desc">Simple</div>
-      <button class="order-now" onclick="openForm()">Order now</button>
+      <button onclick="openForm()">Order now</button>
     </div>
-    <div class="icon-box">
-      <img src="https://via.placeholder.com/150x100?text=B">
+    <div class="option-box">
+      <img id="option2-img" src="simple2.png" alt="">
       <div class="desc">Simple</div>
-      <button class="order-now" onclick="openForm()">Order now</button>
+      <button onclick="openForm()">Order now</button>
     </div>
   </div>
 </div>
 
+<!-- استمارة الطلب -->
 <div class="form-popup" id="formPopup">
-  <button class="form-close" onclick="closeForm()">✖️</button>
-  <h3>The request</h3>
-  <p>للطلب يرجى ملء الاستمارة</p>
-  <div class="form-group">
-    <label>Subject of the offer</label>
-    <input type="text" placeholder="اكتب الموضوع">
-  </div>
-  <div class="form-group">
-    <label>What colors do you prefer in the exhibition?</label>
-    <select>
-      <option>Pastel</option>
-      <option>Dirt</option>
-      <option>Neutral</option>
-      <option>Quiet</option>
-      <option>Thermal</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Describe your offer</label>
-    <textarea rows="3"></textarea>
-  </div>
-  <div class="form-group">
-    <label>يجب التأكد انك دفعت عن طريق صورة الدفع</label>
-    <input type="file">
-  </div>
-  <button class="send-btn">إرسال</button>
+  <button class="close-form" onclick="closeForm()">✖️</button>
+  <p>يجب التأكد انك دفعت عن طريق صورة الدفع</p>
+  <input type="file" />
+  <br>
+  <button>إرسال</button>
 </div>
 
 <script>
   const sidebar = document.getElementById('sidebar');
   const formPopup = document.getElementById('formPopup');
-  const sidebarTitle = document.getElementById('sidebar-title');
-  const sidebarDesc = document.getElementById('sidebar-desc');
-  const carousel = document.getElementById('carousel');
-  let currentImg = 0;
+  const title = document.getElementById('sidebar-title');
+  const desc = document.getElementById('sidebar-desc');
+  const carousel = document.getElementById('carousel-img');
+  const opt1 = document.getElementById('option1-img');
+  const opt2 = document.getElementById('option2-img');
 
-  const servicesInfo = {
-    Presentations: {
-      desc: 'عروض تقديمية مميزة ومصممة بدقة.',
-      images: [
-        'https://via.placeholder.com/400x180?text=Presentations1',
-        'https://via.placeholder.com/400x180?text=Presentations2',
-        'https://via.placeholder.com/400x180?text=Presentations3'
-      ]
+  const data = {
+    presentations: {
+      title: "Presentations",
+      desc: "عروض تقديمية احترافية تعكس فكرتك",
+      carousel: "presentations1.png",
+      opt1: "simple1.png",
+      opt2: "simple2.png"
     },
-    Prints: {
-      desc: 'تصاميم للطباعة عالية الجودة.',
-      images: [
-        'https://via.placeholder.com/400x180?text=Prints1',
-        'https://via.placeholder.com/400x180?text=Prints2',
-        'https://via.placeholder.com/400x180?text=Prints3'
-      ]
+    prints: {
+      title: "Prints",
+      desc: "مطويات وملصقات بجودة عالية",
+      carousel: "prints1.png",
+      opt1: "simple3.png",
+      opt2: "simple4.png"
+    },
+    cards: {
+      title: "Cards",
+      desc: "بطاقات دعوة أو تهنئة بتصاميم راقية",
+      carousel: "cards1.png",
+      opt1: "simple5.png",
+      opt2: "simple6.png"
+    },
+    logos: {
+      title: "Logos",
+      desc: "شعارات فريدة تعبر عن علامتك",
+      carousel: "logos1.png",
+      opt1: "simple7.png",
+      opt2: "simple8.png"
+    },
+    diplomes: {
+      title: "Diplômes",
+      desc: "تصميم شهادات رسمية بجودة عالية",
+      carousel: "diplomes1.png",
+      opt1: "simple9.png",
+      opt2: "simple10.png"
+    },
+    social: {
+      title: "Social Media",
+      desc: "منشورات لوسائل التواصل الاجتماعي",
+      carousel: "social1.png",
+      opt1: "simple11.png",
+      opt2: "simple12.png"
+    },
+    videos: {
+      title: "Videos",
+      desc: "مونتاج وفيديوهات قصيرة احترافية",
+      carousel: "videos1.png",
+      opt1: "simple13.png",
+      opt2: "simple14.png"
+    },
+    docs: {
+      title: "Docs",
+      desc: "تنسيق احترافي للمستندات والنصوص",
+      carousel: "docs1.png",
+      opt1: "simple15.png",
+      opt2: "simple16.png"
     }
   };
 
-  function openSidebar(serviceName) {
-    sidebarTitle.textContent = serviceName;
-    sidebarDesc.textContent = servicesInfo[serviceName].desc;
-
-    const imgs = carousel.querySelectorAll('img');
-    imgs.forEach((img, index) => {
-      img.src = servicesInfo[serviceName].images[index];
-      img.classList.remove('active');
-    });
-    imgs[0].classList.add('active');
+  function openSidebar(service) {
+    const d = data[service];
+    title.textContent = d.title;
+    desc.textContent = d.desc;
+    carousel.src = d.carousel;
+    opt1.src = d.opt1;
+    opt2.src = d.opt2;
     sidebar.classList.add('open');
   }
 
@@ -340,19 +353,12 @@
   }
 
   function openForm() {
-    formPopup.classList.add('open');
+    formPopup.classList.add('active');
   }
 
   function closeForm() {
-    formPopup.classList.remove('open');
+    formPopup.classList.remove('active');
   }
-
-  setInterval(() => {
-    const imgs = carousel.querySelectorAll('img');
-    imgs[currentImg].classList.remove('active');
-    currentImg = (currentImg + 1) % imgs.length;
-    imgs[currentImg].classList.add('active');
-  }, 3000);
 </script>
 </body>
 </html>
