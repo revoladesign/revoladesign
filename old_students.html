@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>University Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Amiri', serif;
+      background-color: #D7E3E5;
+      color: #416A84;
+    }
+    .container {
+      padding: 2rem;
+      text-align: center;
+    }
+    .title {
+      font-size: 2em;
+      margin-bottom: 1rem;
+    }
+    .description {
+      font-size: 1.1em;
+      margin-bottom: 2rem;
+    }
+    .buttons button {
+      background-color: #416A84;
+      color: #D7E3E5;
+      font-family: 'Amiri', serif;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      border: none;
+      cursor: pointer;
+    }
+    .form-popup {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      background-color: rgba(65, 106, 132, 0.5);
+      padding: 2rem;
+      text-align: left;
+      transition: bottom 0.6s ease-in-out;
+      font-family: 'Amiri', serif;
+    }
+    .form-popup.show {
+      bottom: 0;
+    }
+    .close-btn {
+      float: right;
+      background: none;
+      border: none;
+      color: #D7E3E5;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .form-desc {
+      color: #D7E3E5;
+      margin-bottom: 1rem;
+    }
+    .form-fields input, .form-fields select {
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      background-color: rgba(129, 162, 176, 0.5);
+      border: none;
+    }
+    .split-field {
+      display: flex;
+      gap: 1rem;
+    }
+    .split-field input,
+    .split-field select {
+      flex: 1;
+    }
+    .fees label {
+      font-size: 0.9rem;
+      color: #D7E3E5;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .upload-note {
+      font-size: 0.9rem;
+      color: #D7E3E5;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .send-btn {
+      background-color: #D7E3E5;
+      color: #416A84;
+      font-family: 'Amiri', serif;
+      padding: 0.5rem 1.5rem;
+      border: none;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    .confirmation {
+      display: none;
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #67A3B9;
+      color: white;
+      padding: 1rem 2rem;
+      font-family: 'Amiri', serif;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">University Registration for Returning Students</h1>
+    <p class="description">
+      Welcome back to campus life! 🎓✨<br/>
+      For the first time in Algeria, our platform offers a complete university registration service for returning students — fast, easy, and professional!<br/>
+      The RÊVOLA team will handle everything on your behalf:<br/>
+      from selecting preferences, registering payment rights, entering your information on the platform, to confirming your final enrollment.<br/>
+      Whether you’re ready from day one or rushing at the last minute — we’ve got you covered!<br/>
+      🎯 Start your academic year with confidence… and let RÊVOLA take care of the rest!
+    </p>
+
+    <div class="buttons">
+      <button onclick="openForm('L1')">For L1 students</button>
+      <button onclick="openForm('L2')">For L2 students</button>
+      <button onclick="openForm('L3')">For L3 students</button>
+      <button onclick="openForm('Master 1')">For Master 1 students</button>
+      <button onclick="openForm('Master 2')">For Master 2 students</button>
+    </div>
+
+    <div class="form-popup" id="formPopup">
+      <button class="close-btn" onclick="closeForm()">✖️</button>
+      <h2 id="formTitle">Form</h2>
+      <p class="form-desc">Welcome back!<br/>Please fill out this form carefully so we can complete your university registration smoothly.</p>
+
+      <div class="form-fields">
+        <input type="text" placeholder="Name" />
+        <input type="text" placeholder="Surname" />
+        <div class="split-field">
+          <input type="text" placeholder="Registration number" />
+          <select>
+            <option disabled selected>Bac year</option>
+            <option>2024</option>
+            <option>2023</option>
+            <option>2022</option>
+            <option>2021</option>
+          </select>
+        </div>
+        <input type="text" placeholder="Secret number" />
+        <input type="tel" placeholder="Phone number" />
+      </div>
+
+      <div class="fees">
+        <label><input type="checkbox" /> Registration fee: 200 DZD</label><br/>
+        <label><input type="checkbox" /> Transportation fee: 150 DZD</label><br/>
+        <label><input type="checkbox" /> Accommodation fee: 400 DZD</label>
+      </div>
+
+      <p class="upload-note">Payment image must be sent via CCP for verification.</p>
+      <input type="file" />
+      <button class="send-btn" onclick="submitForm()">Send</button>
+    </div>
+
+    <div class="confirmation" id="confirmation">
+      The information has been sent. We will contact you soon via email or SMS.
+    </div>
+  </div>
+
+  <script>
+    function openForm(level) {
+      const popup = document.getElementById('formPopup');
+      const title = document.getElementById('formTitle');
+      title.textContent = `For ${level} students`;
+      popup.classList.add('show');
+    }
+
+    function closeForm() {
+      document.getElementById('formPopup').classList.remove('show');
+    }
+
+    function submitForm() {
+      closeForm();
+      const confirmation = document.getElementById('confirmation');
+      confirmation.style.display = 'block';
+      setTimeout(() => {
+        confirmation.style.display = 'none';
+      }, 6000);
+    }
+  </script>
+</body>
+</html>
