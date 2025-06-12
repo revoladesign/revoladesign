@@ -59,18 +59,17 @@
     }
 
     .form-overlay {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(65, 106, 132, 0.5);
-      padding: 30px 20px;
-      display: none;
-      flex-direction: column;
-      animation: slideUp 0.5s ease;
-      z-index: 1000;
-    }
-
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(65, 106, 132, 0.5);
+  padding: 30px 20px;
+  display: none;
+  flex-direction: column;
+  animation: slideDown 0.5s ease;
+  z-index: 1000;
+}
     @keyframes slideUp {
       from { transform: translateY(100%); }
       to { transform: translateY(0); }
