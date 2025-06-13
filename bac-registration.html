@@ -1,189 +1,404 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>للطلبة الجدد — بكالوريا 2025</title>
+  <meta charset="UTF-8">
+  <title>University Registration - 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
   <style>
     body {
       background-color: #D7E3E5;
       font-family: 'Amiri', serif;
       margin: 0;
-      padding: 20px;
-      direction: rtl;
-      font-size: 20px;
-      max-width: 1200px;
-      margin: auto;
+      padding: 0;
+      color: #416A84;
+    }
+
+    .container {
+      text-align: center;
+      padding: 30px 20px;
     }
 
     h1 {
       color: #416A84;
-      font-size: 32px;
-      margin-bottom: 10px;
+      font-size: 28px;
     }
 
-    p {
+    .description, .steps {
       color: #416A84;
-      line-height: 1.8;
-      font-size: 20px;
+      font-size: 17px;
+      line-height: 1.7;
+      max-width: 800px;
+      margin: 0 auto;
+      white-space: pre-line;
     }
 
-    .form-launch-button {
+    .form-button {
+      margin: 25px auto 10px;
       background-color: #416A84;
       color: #D7E3E5;
       font-family: 'Amiri', serif;
       font-size: 20px;
       padding: 12px 24px;
       border: none;
+      border-radius: 8px;
       cursor: pointer;
-      margin-top: 20px;
       transition: background-color 0.3s;
     }
 
-    .form-launch-button:hover {
-      background-color: #36576C;
+    .form-button:hover {
+      background-color: #36556F;
     }
 
-    /* شاشة الاستمارة المنبثقة */
-    .form-popup {
+    .form-card {
       position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      background-color: rgba(65, 106, 132, 0.5); /* #416A84 بشفافية 50% */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.5s ease;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background-color: #416A84;
+      color: #D7E3E5;
+      padding: 30px 20px;
+      border-radius: 15px;
+      z-index: 9999;
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      transition: transform 0.4s ease;
     }
 
-    .form-popup.active {
-      opacity: 1;
-      pointer-events: auto;
+    .form-card.show {
+      transform: translate(-50%, -50%) scale(1);
     }
 
-    .form-container {
-  background-color: rgba(65, 106, 132, 0.5); /* #416A84 بشفافية 50% */
-  padding: 40px;
-  border-radius: 15px;
-  width: 90%;
-  max-width: 700px; /* ✅ تكبير الحد الأقصى للعرض */
-  font-family: 'Amiri', serif;
-  color: #D7E3E5;
-  position: relative;
-  animation: slideUp 0.5s ease; /* ✅ المؤثر اللطيف */
-  font-size: 1.2rem; /* ✅ تكبير حجم الخط */
-}
-
-    @keyframes slideUp {
-      from {
-        transform: translateY(100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .form-container h2 {
-      font-size: 31px;
-      margin-bottom: 15px;
-    }
-
-    .form-container p {
-      font-size: 23px;
-      margin-bottom: 25px;
+    .form-card .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 22px;
+      cursor: pointer;
       color: #D7E3E5;
     }
 
-    .form-container input,
-    .form-container input[type="file"],
-    .form-container button.submit {
-      display: block;
-      width: 100%;
-      margin-bottom: 20px;
-      padding: 24px;
-      border: none;
-      border-radius: 11px;
-      font-size: 23px;
-      font-family: 'Amiri', serif;
-    }
-
-    .form-container input {
+    .option {
       background-color: #D7E3E5;
       color: #416A84;
-    }
-
-    .form-container input::placeholder {
-      color: #416A84;
-    }
-
-    .form-container button.submit {
-  background-color: #D7E3E5;
-  color: #416A84;
-  font-weight: bold;
-  cursor: pointer;
-  width: 150px; /* ✅ حجم العرض المخصص */
-  margin: 20px auto 0; /* ✅ لتوسيط الزر */
-  display: block;
-}
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      left: 15px;
-      font-size: 24px;
-      color: #D7E3E5;
+      font-family: 'Amiri', serif;
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin: 15px 0;
       cursor: pointer;
+      font-size: 18px;
+      position: relative;
+    }
+
+    .option span.price {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <h1>للطلبة الجدد — بكالوريا 2025</h1>
-  <p>
-    🎉 مبروك عليك النجاح!<br><br>
-    👏 تعبك ما راحش هباءً، وها أنت اليوم تفتح بابًا جديدًا لحياة جامعية واعدة.<br><br>
-    في RÊVOLA، نحن نؤمن أن كل بداية ناجحة تحتاج دعم ذكي ومرافقة حقيقية.<br><br>
-    📚 دعنا نكون دليلك الأول نحو اختيار التخصص، ترتيب الرغبات، وتسجيلك الجامعي خطوة بخطوة…<br><br>
-    💡 ولا تنسى: مشوارك ما يتوقفش هنا!<br>
-    نحن معك أيضًا في كل ما تحتاجه من تصميم عروض، وثائق، ملفات، وحتى نصائح جامعية…
-  </p>
+  <div class="container">
+    <h1>University registration for new students - holders of the 2025 baccalaureate</h1>
+    
+    <p class="description">
+🎉 Congratulations on your success!
 
-  <button class="form-launch-button" onclick="showForm()">ملء الاستمارة</button>
+👏 Your efforts were not in vain, and today you open a new door to a promising university life.
 
-  <!-- شاشة الاستمارة المنبثقة -->
-  <div class="form-popup" id="formPopup">
-    <div class="form-container">
-      <span class="close-btn" onclick="hideForm()">✖️</span>
-      <h2>Fill out your form</h2>
-      <p>سنكمل مع المشوار في آخر نقطة ✨</p>
+At Rivola, we believe that every successful start requires smart support and genuine guidance.
 
-      <input type="text" placeholder="الاسم">
-      <input type="text" placeholder="اللقب">
-      <input type="text" placeholder="تاريخ و مكان الازدياد">
-      <input type="text" placeholder="رقم التسجيل">
-      <input type="text" placeholder="الرقم السري">
-      <input type="text" placeholder="رقم الهاتف">
-      <input type="file" accept="image/*">
+📚 Let us be your first guide to choosing your major, prioritizing your interests, and enrolling in university, step by step...
 
-      <button class="submit">إرسال</button>
-    </div>
+💡 And don't forget: your journey doesn't end here!
+
+We're also here to meet all your needs, from designing presentations, documents, and files, to university consultations...
+    </p>
+
+    <button class="form-button" onclick="openFormCard()">Fill out the form</button>
+
+    <p class="description steps">
+🛠️ مراحل التسجيل الجامعي
+
+🔹 1. التسجيل الأولي
+نقوم بمساعدتكم في:
+• الدخول لموقع التسجيلات الرسمية
+• الإطلاع على “وثيقة حقوق وواجبات الطالب”
+• الإطلاع على نقاط البكالوريا والتخصصات المسموح بها
+• إدخال رغباتكم وفقًا للنظام الرسمي
+
+🔹 2. تأكيد التسجيلات
+نقوم بتأكيد رغباتكم أو تحديثها حسب طلبكم، مع ضمان أن الاستمارة المعتمدة هي الأخيرة فقط.
+
+🔹 3. نتائج التوجيه والطعون
+نُتابع معكم إعلان نتائج التوجيه،
+وفي حال لم يتم تلبية أي من اختياراتكم، نتكفل بمساعدتكم على إدخال 3 رغبات جديدة في الطعن.
+
+🔹 4. المسابقات والاختبارات (لبعض التخصصات فقط)
+نقوم بتذكيركم بمواعيد المقابلات أو الاختبارات الخاصة بالتخصصات المشروطة، ونتابع نتائجكم فور صدورها.
+
+🔹 5. التسجيل النهائي في الجامعة
+نقوم بجمع الوثائق اللازمة وإعداد الملف المطلوب لتقديمه شخصيًا في الجامعة.
+
+⸻
+
+📦 الملفات التي نعالجها بالنيابة عنكم
+🟩 ملف التسجيل النهائي: ...
+🟩 ملف المنحة: ...
+🟩 ملف الإيواء: ...
+🟩 ملف النقل: ...
+🟩 فتح حساب بريدي: ...
+
+⸻
+
+📤 ما نطلبه منكم لإكمال ملفاتكم
+✅ معلومات شخصية:
+• الاسم واللقب
+• رقم التسجيل البكالوريا
+• الرقم السري
+• رقم الهاتف
+• نوع الخدمة المطلوبة (تسجيل – منحة – إيواء – نقل…)
+
+✅ وثائق للتحميل:
+• شهادة النجاح
+• بطاقة تعريف
+• صورة شمسية
+• إثبات دفع
+• شهادة الإقامة
+• أي وثيقة إضافية حسب نوع الطلب
+    </p>
+  </div>
+
+  <div class="form-card" id="formCard">
+    <span class="close-btn" onclick="closeFormCard()">✖️</span>
+    <div class="option" onclick="openForm('form1')">Initial university registration <span class="price">200Da</span></div>
+    <div class="option" onclick="openForm('form2')">University scholarship application <span class="price">200Da</span></div>
+    <div class="option" onclick="openForm('form3')">Request for accommodation, food and transportation <span class="price">200Da</span></div>
+    <div class="option" onclick="openForm('form4')">All university records <span class="price">500Da</span></div>
   </div>
 
   <script>
-    function showForm() {
-      document.getElementById("formPopup").classList.add("active");
+    function openFormCard() {
+      document.getElementById("formCard").classList.add("show");
     }
 
-    function hideForm() {
-      document.getElementById("formPopup").classList.remove("active");
+    function closeFormCard() {
+      document.getElementById("formCard").classList.remove("show");
+    }
+
+    function openForm(formId) {
+      closeFormCard();
+      setTimeout(() => {
+        document.getElementById(formId).classList.add("show-form");
+      }, 400);
     }
   </script>
 
 </body>
 </html>
+
+<!-- Form 1 - Initial Registration -->
+<style>
+  .popup-form {
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: rgba(65, 106, 132, 0.5);
+    padding: 25px 20px;
+    border-radius: 15px;
+    z-index: 10000;
+    transition: top 0.5s ease;
+    font-family: 'Amiri', serif;
+    color: #D7E3E5;
+  }
+
+  .popup-form.show-form {
+    top: 50px;
+  }
+
+  .popup-form h3 {
+    margin-top: 0;
+    color: #D7E3E5;
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .popup-form input, .popup-form select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Amiri', serif;
+    font-size: 16px;
+  }
+
+  .popup-form input[type="file"] {
+    background-color: #D7E3E5;
+    color: #416A84;
+  }
+
+  .popup-form button {
+    background-color: #416A84;
+    color: #D7E3E5;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Amiri', serif;
+    margin-top: 10px;
+  }
+
+  .confirmation {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #C9DDBE;
+    color: #416A84;
+    font-family: 'Amiri', serif;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: bottom 0.5s ease;
+    z-index: 10001;
+  }
+
+  .confirmation.show {
+    bottom: 30px;
+  }
+
+  .popup-form .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #D7E3E5;
+  }
+</style>
+
+<div class="popup-form" id="form1">
+  <span class="close-btn" onclick="closePopup('form1')">✖️</span>
+  <h3>Initial university registration</h3>
+
+  <input type="text" placeholder="Full Name" required>
+  <input type="text" placeholder="Surname" required>
+  <input type="text" placeholder="Date of birth" required>
+  <input type="text" placeholder="Place of birth" required>
+  <input type="text" placeholder="Baccalaureate registration number" required>
+  <input type="text" placeholder="Secret code" required>
+  <input type="tel" placeholder="Phone number" required>
+  <input type="text" placeholder="Desired field of study" required>
+
+  <label style="display:block; margin-top:10px;">Upload proof of payment:</label>
+  <input type="file" accept="image/*,application/pdf">
+
+  <button onclick="submitForm()">Send</button>
+</div>
+
+<div class="confirmation" id="confirmationMessage">
+  ✅ Your form has been submitted successfully!
+</div>
+
+<script>
+  function closePopup(id) {
+    document.getElementById(id).classList.remove("show-form");
+  }
+
+  function submitForm() {
+    // يمكنكِ هنا لاحقًا ربطها بـ PHP أو Firebase
+    const message = document.getElementById("confirmationMessage");
+    message.classList.add("show");
+    setTimeout(() => {
+      message.classList.remove("show");
+    }, 6000);
+  }
+</script>
+
+<!-- Form 2 - Scholarship Application -->
+<div class="popup-form" id="form2">
+  <span class="close-btn" onclick="closePopup('form2')">✖️</span>
+  <h3>University scholarship application</h3>
+  <p style="color:#D7E3E5; font-family:'Amiri', serif; text-align:center;">
+    Fill in your personal information and upload the required documents to begin your scholarship application.
+  </p>
+
+  <input type="text" placeholder="Full Name" required>
+  <input type="text" placeholder="Surname" required>
+  <input type="text" placeholder="Date of birth" required>
+  <input type="text" placeholder="Place of birth" required>
+  <input type="text" placeholder="Baccalaureate registration number" required>
+  <input type="text" placeholder="Secret code" required>
+  <input type="tel" placeholder="Phone number" required>
+
+  <label style="display:block; margin-top:10px;">Upload required documents:</label>
+  <input type="file" accept="image/*,application/pdf" multiple>
+
+  <button onclick="submitForm()">Send</button>
+</div>
+
+<!-- Form 3 - Accommodation, Food, Transport -->
+<div class="popup-form" id="form3">
+  <span class="close-btn" onclick="closePopup('form3')">✖️</span>
+  <h3>Request for accommodation, food and transportation</h3>
+  <p style="color:#D7E3E5; font-family:'Amiri', serif; text-align:center;">
+    Please provide your personal details and attach the required documents to request accommodation, food and transportation services.
+  </p>
+
+  <input type="text" placeholder="Full Name" required>
+  <input type="text" placeholder="Surname" required>
+
+  <div style="display:flex; gap:10px;">
+    <input type="text" placeholder="Date of birth" required style="flex:1;">
+    <input type="text" placeholder="Place of birth" required style="flex:1;">
+  </div>
+
+  <input type="text" placeholder="Registration number" required>
+  <input type="text" placeholder="Secret number" required>
+  <input type="tel" placeholder="Phone number" required>
+
+  <p style="color:#D7E3E5; font-family:'Amiri', serif; margin-top:10px;">
+    Payment image must be sent via CCP for verification.
+  </p>
+
+  <input type="file" accept="image/*,application/pdf" multiple>
+
+  <button onclick="submitForm()">Send</button>
+</div>
+
+<!-- Form 4 - All University Records -->
+<div class="popup-form" id="form4">
+  <span class="close-btn" onclick="closePopup('form4')">✖️</span>
+  <h3>All university records</h3>
+  <p style="color:#D7E3E5; font-family:'Amiri', serif; text-align:center;">
+    Complete this form to submit a full university registration package including all required files and documents.
+  </p>
+
+  <input type="text" placeholder="Full Name" required>
+  <input type="text" placeholder="Surname" required>
+
+  <div style="display:flex; gap:10px;">
+    <input type="text" placeholder="Date of birth" required style="flex:1;">
+    <input type="text" placeholder="Place of birth" required style="flex:1;">
+  </div>
+
+  <input type="text" placeholder="Registration number" required>
+  <input type="text" placeholder="Secret number" required>
+  <input type="tel" placeholder="Phone number" required>
+
+  <p style="color:#D7E3E5; font-family:'Amiri', serif; margin-top:10px;">
+    Payment image must be sent via CCP for verification.
+  </p>
+
+  <input type="file" accept="image/*,application/pdf" multiple>
+
+  <button onclick="submitForm()">Send</button>
+</div>
