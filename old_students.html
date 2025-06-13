@@ -109,22 +109,29 @@
     }
 
     .split-inputs {
-      display: flex;
-      gap: 10px;
-    }
+  display: flex;
+  gap: 10px;
+}
 
-    .split-inputs input:first-child {
-      flex: 2;
-    }
+.split-inputs input:first-child,
+.split-inputs select {
+  height: 45px; /* أو أي ارتفاع يناسبك */
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: rgba(215, 227, 229, 0.5);
+  font-family: 'Amiri', serif;
+  box-sizing: border-box;
+  color: #416A84;
+}
 
-    .split-inputs select {
-      flex: 1;
-      padding: 12px;
-      border-radius: 6px;
-      border: none;
-      background-color: rgba(215, 227, 229, 0.5);
-      font-family: 'Amiri', serif;
-    }
+.split-inputs input:first-child {
+  flex: 2;
+}
+
+.split-inputs select {
+  flex: 1;
+}
 
     .fees {
       text-align: left;
@@ -234,14 +241,13 @@ Whether you’re ready from day one or rushing at the last minute — we’ve go
       <input type="text" class="form-input" placeholder="Surname">
 
       <div class="split-inputs">
-        <input type="text" class="form-input" placeholder="Registration number">
-        <select class="bac-year">
-  <option>Bac 2024</option>
-  <option>Bac 2023</option>
-  <option>Bac 2022</option>
-  <option>Bac 2021</option>
-</select>
-      </div>
+  <input type="text" class="form-input" placeholder="Serial number">
+  <select class="form-input">
+    <option>Bac 2024</option>
+    <option>Bac 2023</option>
+    <option>Bac 2022</option>
+  </select>
+</div>
 
       <input type="text" class="form-input" placeholder="Secret number">
       <input type="text" class="form-input" placeholder="Phone number">
