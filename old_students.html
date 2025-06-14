@@ -271,13 +271,54 @@ Whether you’re ready from day one or rushing at the last minute — we’ve go
       <p class="upload-note">Payment image must be sent via CCP for verification.</p>
       <input type="file" class="form-file">
 
-      <button class="send-btn" onclick="submitForm()">Send</button>
-    </div>
-  </div>
+      <button onclick="submitForm()">Send</button>
+</div>
 
-  <div class="confirmation" id="confirmationBox">
-    The information has been sent. We will contact you soon via email or SMS.
-  </div>
+<div class="confirmation" id="confirmationMessage">
+  ✅ Your form has been submitted successfully!
+</div>
+
+<div class="error-message" id="errorMessage">
+  ❌ Please fill out the form completely.
+</div>
+
+<script>
+  function closePopup(id) {
+    document.getElementById(id).classList.remove("show-form");
+  }
+
+  function submitForm() {
+    const currentForm = event.target.closest(".popup-form");
+    const inputs = currentForm.querySelectorAll("input[required]");
+
+    let allFilled = true;
+
+    inputs.forEach(input => {
+      if (!input.value.trim()) {
+        allFilled = false;
+      }
+    });
+
+    if (!allFilled) {
+      const error = document.getElementById("errorMessage");
+      error.classList.add("show");
+      setTimeout(() => {
+        error.classList.remove("show");
+      }, 4000);
+      return;
+    }
+
+    // ✅ إخفاء الاستمارة
+    currentForm.classList.remove("show-form");
+
+    // ✅ عرض بطاقة التأكيد الخضراء
+    const message = document.getElementById("confirmationMessage");
+    message.classList.add("show");
+    setTimeout(() => {
+      message.classList.remove("show");
+    }, 6000);
+  }
+</script>
 
   <div class="spacer"></div>
 
