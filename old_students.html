@@ -196,17 +196,48 @@
     }
 
     .confirmation {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #67A3B9;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      display: none;
-      animation: fadeOut 6s forwards;
-    }
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #C9DDBE;
+  color: #416A84;
+  font-family: 'Amiri', serif;
+  padding: 25px 35px;
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: top 0.5s ease;
+  z-index: 10001;
+  text-align: center;
+}
+
+.confirmation.show {
+  top: 40px;
+}
+
+.error-message {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #CD2827;
+  color: #fff;
+  font-family: 'Amiri', serif;
+  padding: 20px 30px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: top 0.5s ease;
+  z-index: 10002;
+  text-align: center;
+}
+
+.error-message.show {
+  top: 40px;
+}
 
     @keyframes fadeOut {
       0% { opacity: 1; }
