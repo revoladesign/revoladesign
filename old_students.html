@@ -6,6 +6,24 @@
   <title>University Registration - Returning Students</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
   <style>
+  .form-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.form-title-container h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.form-price {
+  font-family: 'Amiri', serif;
+  font-size: 14px;
+  color: #00BF63;
+}
     body {
       margin: 0;
       padding: 0;
@@ -244,7 +262,10 @@ Whether you’re ready from day one or rushing at the last minute — we’ve go
   <div class="form-overlay" id="formOverlay">
     <button class="close-btn" onclick="closeForm()">✖️</button>
     <div class="form-content">
-      <h2 id="formTitle"></h2>
+      <div class="form-title-container">
+  <h2 id="formTitle"></h2>
+  <span class="form-price">Service price: 300da</span>
+</div>
       <p>Welcome back!<br>Please fill out this form carefully so we can complete your university registration smoothly.</p>
 
       <input type="text" class="form-input" placeholder="Name">
