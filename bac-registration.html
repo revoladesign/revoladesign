@@ -261,23 +261,26 @@ We're also here to meet all your needs, from designing presentations, documents,
   }
 
   .confirmation {
-    position: fixed;
-    bottom: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #C9DDBE;
-    color: #416A84;
-    font-family: 'Amiri', serif;
-    padding: 15px 25px;
-    border-radius: 10px;
-    font-size: 16px;
-    transition: bottom 0.5s ease;
-    z-index: 10001;
-  }
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #C9DDBE;
+  color: #416A84;
+  font-family: 'Amiri', serif;
+  padding: 25px 35px;
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: top 0.5s ease;
+  z-index: 10001;
+  text-align: center;
+}
 
-  .confirmation.show {
-    bottom: 30px;
-  }
+.confirmation.show {
+  top: 40px;
+}
 
   .popup-form .close-btn {
     position: absolute;
