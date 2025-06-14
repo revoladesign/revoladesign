@@ -282,6 +282,28 @@ We're also here to meet all your needs, from designing presentations, documents,
   top: 40px;
 }
 
+.error-message {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #CD2827;
+  color: #fff;
+  font-family: 'Amiri', serif;
+  padding: 20px 30px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: top 0.5s ease;
+  z-index: 10002;
+  text-align: center;
+}
+
+.error-message.show {
+  top: 40px;
+}
+
   .popup-form .close-btn {
     position: absolute;
     top: 10px;
@@ -321,13 +343,36 @@ We're also here to meet all your needs, from designing presentations, documents,
   ✅ Your form has been submitted successfully!
 </div>
 
+<div class="error-message" id="errorMessage">
+  ❌ Please fill out the form completely.
+</div>
+
 <script>
   function closePopup(id) {
     document.getElementById(id).classList.remove("show-form");
   }
 
   function submitForm() {
-    // يمكنكِ هنا لاحقًا ربطها بـ PHP أو Firebase
+    const currentForm = event.target.closest(".popup-form");
+    const inputs = currentForm.querySelectorAll("input[required]");
+
+    let allFilled = true;
+
+    inputs.forEach(input => {
+      if (!input.value.trim()) {
+        allFilled = false;
+      }
+    });
+
+    if (!allFilled) {
+      const error = document.getElementById("errorMessage");
+      error.classList.add("show");
+      setTimeout(() => {
+        error.classList.remove("show");
+      }, 4000);
+      return;
+    }
+
     const message = document.getElementById("confirmationMessage");
     message.classList.add("show");
     setTimeout(() => {
