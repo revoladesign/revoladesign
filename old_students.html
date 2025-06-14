@@ -214,17 +214,37 @@
     }
 
     .confirmation {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #67A3B9;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      display: none;
-      animation: fadeOut 6s forwards;
-    }
+  position: fixed;
+  top: 30px; /* 👈 بدل bottom */
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px); /* 👈 يظهر من فوق */
+  background-color: #67A3B9;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: none;
+  animation: slideDownAndFade 6s forwards;
+  z-index: 9999;
+}
+
+@keyframes slideDownAndFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-100px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-100px);
+  }
+}
 
     @keyframes fadeOut {
       0% { opacity: 1; }
