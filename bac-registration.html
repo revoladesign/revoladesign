@@ -373,6 +373,10 @@ We're also here to meet all your needs, from designing presentations, documents,
       return;
     }
 
+    // ✅ إخفاء الاستمارة
+    currentForm.classList.remove("show-form");
+
+    // ✅ عرض بطاقة التأكيد الخضراء
     const message = document.getElementById("confirmationMessage");
     message.classList.add("show");
     setTimeout(() => {
