@@ -196,49 +196,27 @@
     }
 
     .confirmation {
-  position: fixed;
-  top: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #C9DDBE;
-  color: #416A84;
-  font-family: 'Amiri', serif;
-  padding: 25px 35px;
-  border-radius: 12px;
-  font-size: 22px;
-  font-weight: bold;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: top 0.5s ease;
-  z-index: 10001;
-  text-align: center;
-}
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #67A3B9;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      display: none;
+      animation: fadeOut 6s forwards;
+    }
 
-.confirmation.show {
-  top: 40px;
-}
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; display: none; }
+    }
 
-.error-message {
-  position: fixed;
-  top: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #CD2827;
-  color: #fff;
-  font-family: 'Amiri', serif;
-  padding: 20px 30px;
-  border-radius: 12px;
-  font-size: 20px;
-  font-weight: bold;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: top 0.5s ease;
-  z-index: 10002;
-  text-align: center;
-}
-
-.error-message.show {
-  top: 40px;
-}
-
+    .spacer {
+      height: 100px;
+    }
     
   </style>
 </head>
@@ -293,58 +271,15 @@ Whether you’re ready from day one or rushing at the last minute — we’ve go
       <p class="upload-note">Payment image must be sent via CCP for verification.</p>
       <input type="file" class="form-file">
 
-      <button onclick="submitForm()">Send</button>
-</div>
+      <button class="send-btn" onclick="submitForm()">Send</button>
+    </div>
+  </div>
 
-<div class="confirmation" id="confirmationMessage">
-  ✅ Your form has been submitted successfully!
-</div>
+  <div class="confirmation" id="confirmationBox">
+    The information has been sent. We will contact you soon via email or SMS.
+  </div>
 
-<div class="error-message" id="errorMessage">
-  ❌ Please fill out the form completely.
-</div>
-
-<div class="spacer"></div>
-
-<script>
-  function closePopup(id) {
-    document.getElementById(id).classList.remove("show-form");
-  }
-
-  function submitForm() {
-    const currentForm = event.target.closest(".popup-form");
-    const inputs = currentForm.querySelectorAll("input[required]");
-
-    let allFilled = true;
-
-    inputs.forEach(input => {
-      if (!input.value.trim()) {
-        allFilled = false;
-      }
-    });
-
-    if (!allFilled) {
-      const error = document.getElementById("errorMessage");
-      error.classList.add("show");
-      setTimeout(() => {
-        error.classList.remove("show");
-      }, 4000);
-      return;
-    }
-
-    // ✅ إخفاء الاستمارة
-    currentForm.classList.remove("show-form");
-
-    // ✅ عرض بطاقة التأكيد الخضراء
-    const message = document.getElementById("confirmationMessage");
-    message.classList.add("show");
-    setTimeout(() => {
-      message.classList.remove("show");
-    }, 6000);
-  }
-</script>
-
-  
+  <div class="spacer"></div>
 
   <script>
     function openForm(level) {
@@ -401,4 +336,4 @@ Whether you’re ready from day one or rushing at the last minute — we’ve go
   }, 1000);
 </script>
 </body>
-</html>
+</html> 
