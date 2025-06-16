@@ -412,5 +412,23 @@ CCP: 0042689809 ☟☟</p>
     countdownTimer.textContent = `${days} days / ${hours} hours / ${minutes} minutes / ${seconds} seconds`;
   }, 1000);
 </script>
+
+<script>
+// خريطة تحمل عناوين Google Apps Script لكل مستوى
+const scriptUrls = {
+  L1:  "https://script.google.com/macros/s/AKfycby5y-eH7xdyLQEu8xAo3tmfHl5TIcfRkZQLdjJNk92DgU8a58VyrYMM449I1heVGhlWng/exec",
+  L2:  "https://script.google.com/macros/s/AKfycbxNFepD-uG5mqisDerrq1IvmaemtEOcKMMJuxHt23VWcTGJ49PheDsQvr4XLn-z0eisIA/exec",
+  L3:  "https://script.google.com/macros/s/AKfycbzLRl62oPmSdGew66mysglk6CgL3R0XqLmhwif7hG7-kDX1oA8Dz_st6wIWKOppbWOC/exec",
+  M1:  "https://script.google.com/macros/s/[رابط Master1 هنا]/exec",  // ضع الرابط الفعلي لـ Master 1
+  M2:  "https://script.google.com/macros/s/[رابط Master2 هنا]/exec"   // ضع الرابط الفعلي لـ Master 2
+};
+
+// دالة تغيير وجهة النموذج وإرساله
+function submitToLevel(level) {
+  const form = document.getElementById('registrationForm');
+  form.action = scriptUrls[level];   // تعيين الرابط المناسب في خاصية action
+  form.submit();                     // إرسال النموذج
+}
+</script>
 </body>
 </html> 
