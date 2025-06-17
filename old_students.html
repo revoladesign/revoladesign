@@ -292,8 +292,6 @@ Whether you’re ready from day one or rushing at the last minute — we’ve go
   <span class="form-price">Service price: 300da</span>
 </div>
       <p>Welcome back!<br>Please fill out this form carefully so we can complete your university registration smoothly.</p>
-
-<form id="registrationForm" method="POST" enctype="multipart/form-data" action="">
   
       <input type="text" class="form-input" placeholder="Name">
       <input type="text" class="form-input" placeholder="Surname">
@@ -379,58 +377,5 @@ CCP: 0042689809 ☟☟</p>
   }
 }
   </script>
-  
-‎  <!-- شاشة العد التنازلي -->
-<div id="countdownScreen" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #D7E3E5; color: #416A84; font-family: 'Amiri', serif;
-  display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
-  <h1 style="font-size: 26px;">Page will open soon</h1>
-  <p style="font-size: 18px;">Opening in:</p>
-  <div id="countdownTimer" style="font-size: 24px; margin-top: 10px;"></div>
-</div>
-
-<script>
-  const targetDate = new Date("June 13, 2025 21:16:00 GMT+1").getTime();
-
-  const countdownScreen = document.getElementById("countdownScreen");
-  const countdownTimer = document.getElementById("countdownTimer");
-
-  const interval = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    if (distance <= 0) {
-      clearInterval(interval);
-      countdownScreen.style.display = "none";
-      document.body.style.display = "block";
-      return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    countdownTimer.textContent = `${days} days / ${hours} hours / ${minutes} minutes / ${seconds} seconds`;
-  }, 1000);
-</script>
-
-<script>
-‎// خريطة تحمل عناوين Google Apps Script لكل مستوى
-const scriptUrls = {
-  L1:  "https://script.google.com/macros/s/AKfycby5y-eH7xdyLQEu8xAo3tmfHl5TIcfRkZQLdjJNk92DgU8a58VyrYMM449I1heVGhlWng/exec",
-  L2:  "https://script.google.com/macros/s/AKfycbxNFepD-uG5mqisDerrq1IvmaemtEOcKMMJuxHt23VWcTGJ49PheDsQvr4XLn-z0eisIA/exec",
-  L3:  "https://script.google.com/macros/s/AKfycbzLRl62oPmSdGew66mysglk6CgL3R0XqLmhwif7hG7-kDX1oA8Dz_st6wIWKOppbWOC/exec",
-  M1:  "https://script.google.com/macros/s/[رابط Master1 هنا]/exec",  // ضع الرابط الفعلي لـ Master 1
-  M2:  "https://script.google.com/macros/s/[رابط Master2 هنا]/exec"   // ضع الرابط الفعلي لـ Master 2
-};
-
-‎// دالة تغيير وجهة النموذج وإرساله
-function submitToLevel(level) {
-  const form = document.getElementById('registrationForm');
-  form.action = scriptUrls[level];   // تعيين الرابط المناسب في خاصية action
-  form.submit();                     // إرسال النموذج
-}
-</script>
 </body>
 </html> 
