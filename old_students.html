@@ -355,6 +355,82 @@ CCP: 0042689809 ☟☟</p>
     isComplete = false;
   }
 
+      <script>
+function submitForm() {
+  const overlay = document.getElementById('formOverlay');
+  const inputs = document.querySelectorAll('.form-input');
+  const fileInput = document.querySelector('.form-file');
+  const checkboxes = document.querySelectorAll('.fees input');
+  const level = document.getElementById('formTitle').textContent.replace('For ', '').replace(' students', '');
+
+  let isComplete = true;
+  let values = [];
+
+  inputs.forEach(input => {
+    if (input.value.trim() === "") isComplete = false;
+    values.push(input.value.trim());
+  });
+
+  if (!fileInput.files.length) isComplete = false;
+
+  const confirmation = document.getElementById('confirmationBox');
+  const error = document.getElementById('errorBox');
+
+  if (!isComplete) {
+    error.style.display = 'block';
+    setTimeout(() => error.style.display = 'none', 6000);
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function () {
+    const fileData = reader.result.split(',')[1]; // Base64 only
+
+    const data = {
+      name: values[0],
+      surname: values[1],
+      serialNumber: values[2],
+      bacYear: values[3],
+      secretNumber: values[4],
+      phoneNumber: values[5],
+      registrationFee: checkboxes[0].checked ? "Yes" : "No",
+      transportationFee: checkboxes[1].checked ? "Yes" : "No",
+      accommodationFee: checkboxes[2].checked ? "Yes" : "No",
+      registrationType: level,
+      file: {
+        name: fileInput.files[0].name,
+        mimeType: fileInput.files[0].type,
+        data: fileData
+      }
+    };
+
+    fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => {
+      if (res.ok) {
+        overlay.style.display = 'none';
+        confirmation.style.display = 'block';
+        setTimeout(() => confirmation.style.display = 'none', 6000);
+      } else {
+        throw new Error("Network error");
+      }
+    })
+    .catch(() => {
+      error.style.display = 'block';
+      setTimeout(() => error.style.display = 'none', 6000);
+    });
+  };
+
+  reader.readAsDataURL(fileInput.files[0]);
+}
+</script>
+
+
   const error = document.getElementById('errorBox');
   const confirmation = document.getElementById('confirmationBox');
 
