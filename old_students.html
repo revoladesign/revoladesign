@@ -370,7 +370,6 @@ function submitForm() {
   let isComplete = true;
   let values = [];
 
-  // تحقق من الحقول
   inputs.forEach(input => {
     if (input.value.trim() === "") isComplete = false;
     values.push(input.value.trim());
@@ -389,7 +388,7 @@ function submitForm() {
 
   const reader = new FileReader();
   reader.onload = function () {
-    const fileData = reader.result.split(',')[1]; // Base64 only
+    const fileData = reader.result.split(',')[1];
 
     const data = {
       name: values[0],
