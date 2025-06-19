@@ -358,41 +358,9 @@ CCP: 0042689809 ☟☟</p>
     function closeForm() {
       document.getElementById('formOverlay').style.display = 'none';
     }
-
-    function submitForm() {
-      const inputs = document.querySelectorAll('.form-input');
-  const fileInput = document.querySelector('.form-file');
-  
-  let isComplete = true;
-  
-  // التحقق من الحقول النصية وقائمة Bac
-  inputs.forEach(input => {
-    if (input.value.trim() === "") {
-      isComplete = false;
-    }
-  });
-
-  // التحقق من رفع صورة
-  if (!fileInput.files.length) {
-    isComplete = false;
-  }
-
-
-  const error = document.getElementById('errorBox');
-  const confirmation = document.getElementById('confirmationBox');
-
-  if (!isComplete) {
-    error.style.display = 'block';
-    setTimeout(() => {
-      error.style.display = 'none';
-    }, 6000);
-  } else {
-    closeForm();
-    confirmation.style.display = 'block';
-    setTimeout(() => {
-      confirmation.style.display = 'none';
-    }, 6000);
     
+ 
+function submitForm() {
   const overlay = document.getElementById('formOverlay');
   const inputs = document.querySelectorAll('.form-input');
   const fileInput = document.querySelector('.form-file');
@@ -402,6 +370,7 @@ CCP: 0042689809 ☟☟</p>
   let isComplete = true;
   let values = [];
 
+  // تحقق من الحقول
   inputs.forEach(input => {
     if (input.value.trim() === "") isComplete = false;
     values.push(input.value.trim());
@@ -463,7 +432,6 @@ CCP: 0042689809 ☟☟</p>
   };
 
   reader.readAsDataURL(fileInput.files[0]);
-}
 }
   </script>
   
