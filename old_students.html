@@ -360,6 +360,39 @@ CCP: 0042689809 ☟☟</p>
     }
 
     function submitForm() {
+      const inputs = document.querySelectorAll('.form-input');
+  const fileInput = document.querySelector('.form-file');
+  
+  let isComplete = true;
+  
+  // التحقق من الحقول النصية وقائمة Bac
+  inputs.forEach(input => {
+    if (input.value.trim() === "") {
+      isComplete = false;
+    }
+  });
+
+  // التحقق من رفع صورة
+  if (!fileInput.files.length) {
+    isComplete = false;
+  }
+
+
+  const error = document.getElementById('errorBox');
+  const confirmation = document.getElementById('confirmationBox');
+
+  if (!isComplete) {
+    error.style.display = 'block';
+    setTimeout(() => {
+      error.style.display = 'none';
+    }, 6000);
+  } else {
+    closeForm();
+    confirmation.style.display = 'block';
+    setTimeout(() => {
+      confirmation.style.display = 'none';
+    }, 6000);
+    
   const overlay = document.getElementById('formOverlay');
   const inputs = document.querySelectorAll('.form-input');
   const fileInput = document.querySelector('.form-file');
