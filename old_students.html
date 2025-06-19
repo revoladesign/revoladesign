@@ -393,45 +393,8 @@ CCP: 0042689809 ☟☟</p>
       confirmation.style.display = 'none';
     }, 6000);
   }
-}
-  </script>
-  
-  <!-- شاشة العد التنازلي -->
-<div id="countdownScreen" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #D7E3E5; color: #416A84; font-family: 'Amiri', serif;
-  display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
-  <h1 style="font-size: 26px;">Page will open soon</h1>
-  <p style="font-size: 18px;">Opening in:</p>
-  <div id="countdownTimer" style="font-size: 24px; margin-top: 10px;"></div>
-</div>
 
-<script>
-  const targetDate = new Date("June 13, 2025 21:16:00 GMT+1").getTime();
-
-  const countdownScreen = document.getElementById("countdownScreen");
-  const countdownTimer = document.getElementById("countdownTimer");
-
-  const interval = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    if (distance <= 0) {
-      clearInterval(interval);
-      countdownScreen.style.display = "none";
-      document.body.style.display = "block";
-      return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    countdownTimer.textContent = `${days} days / ${hours} hours / ${minutes} minutes / ${seconds} seconds`;
-  }, 1000);
-</script>
-
-   <script>
+      <script>
 function submitForm() {
   const overlay = document.getElementById('formOverlay');
   const inputs = document.querySelectorAll('.form-input');
@@ -504,6 +467,43 @@ function submitForm() {
 
   reader.readAsDataURL(fileInput.files[0]);
 }
+</script>
+}
+  </script>
+  
+  <!-- شاشة العد التنازلي -->
+<div id="countdownScreen" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #D7E3E5; color: #416A84; font-family: 'Amiri', serif;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
+  <h1 style="font-size: 26px;">Page will open soon</h1>
+  <p style="font-size: 18px;">Opening in:</p>
+  <div id="countdownTimer" style="font-size: 24px; margin-top: 10px;"></div>
+</div>
+
+<script>
+  const targetDate = new Date("June 13, 2025 21:16:00 GMT+1").getTime();
+
+  const countdownScreen = document.getElementById("countdownScreen");
+  const countdownTimer = document.getElementById("countdownTimer");
+
+  const interval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+      clearInterval(interval);
+      countdownScreen.style.display = "none";
+      document.body.style.display = "block";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownTimer.textContent = `${days} days / ${hours} hours / ${minutes} minutes / ${seconds} seconds`;
+  }, 1000);
 </script>
 
 </body>
