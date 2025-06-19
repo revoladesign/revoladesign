@@ -400,21 +400,18 @@ function submitForm() {
   const overlay = document.getElementById('formOverlay');
   const fileInput = document.querySelector('.form-file');
   const checkboxes = document.querySelectorAll('.fees input');
-  const level = document.getElementById('formTitle').textContent.replace('For ', '').replace(' students', '');
+  const level = document.getElementById('formTitle')
+    .textContent.replace('For ', '').replace(' students', '');
 
   const inputs = document.querySelectorAll('.form-input');
-  const values = [];
-
-  inputs.forEach(input => {
-    values.push(input.value.trim());
-  });
+  const values = Array.from(inputs).map(input => input.value.trim());
 
   const confirmation = document.getElementById('confirmationBox');
 
-  const reader = new FileReader();
-  reader.onload = function () {
-    const fileData = reader.result.split(',')[1]; // Base64 only
+  // تخفي الفورم فور الضغط Send
+  overlay.style.display = 'none';
 
+  const sendData = (fileData, fileObj) => {
     const data = {
       name: values[0] || "",
       surname: values[1] || "",
@@ -427,64 +424,37 @@ function submitForm() {
       accommodationFee: checkboxes[2].checked ? "Yes" : "No",
       registrationType: level,
       file: {
-        name: fileInput.files[0]?.name || "no-file",
-        mimeType: fileInput.files[0]?.type || "none",
-        data: fileData || ""
+        name: fileObj.name,
+        mimeType: fileObj.type,
+        data: fileData
       }
     };
 
     fetch("https://script.google.com/macros/s/AKfycbzbdNEQEgzq3GHcBf2QtLRJ4Ga2mxtyq8N50NTEp1a-PA7h4ZPXNne5s1ks9awiyHQIgQ/exec", {
       method: "POST",
       body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
+      headers: { "Content-Type": "application/json" }
     })
     .then(res => {
       if (res.ok) {
-        overlay.style.display = 'none';
         confirmation.style.display = 'block';
         setTimeout(() => confirmation.style.display = 'none', 6000);
       }
+    })
+    .catch(err => {
+      console.error("Fetch error:", err);
     });
   };
 
   if (fileInput.files.length > 0) {
+    const reader = new FileReader();
+    reader.onload = function () {
+      const fileData = reader.result.split(',')[1];
+      sendData(fileData, fileInput.files[0]);
+    };
     reader.readAsDataURL(fileInput.files[0]);
   } else {
-    // إرسال بدون ملف
-    const data = {
-      name: values[0] || "",
-      surname: values[1] || "",
-      serialNumber: values[2] || "",
-      bacYear: values[3] || "",
-      secretNumber: values[4] || "",
-      phoneNumber: values[5] || "",
-      registrationFee: checkboxes[0].checked ? "Yes" : "No",
-      transportationFee: checkboxes[1].checked ? "Yes" : "No",
-      accommodationFee: checkboxes[2].checked ? "Yes" : "No",
-      registrationType: level,
-      file: {
-        name: "no-file",
-        mimeType: "none",
-        data: ""
-      }
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycbzbdNEQEgzq3GHcBf2QtLRJ4Ga2mxtyq8N50NTEp1a-PA7h4ZPXNne5s1ks9awiyHQIgQ/exec", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(res => {
-      if (res.ok) {
-        overlay.style.display = 'none';
-        confirmation.style.display = 'block';
-        setTimeout(() => confirmation.style.display = 'none', 6000);
-      }
-    });
+    sendData("", { name: "no-file", type: "" });
   }
 }
 </script>
