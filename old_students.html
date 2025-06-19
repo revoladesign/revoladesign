@@ -397,19 +397,18 @@ CCP: 0042689809 ☟☟</p>
 
 <script>
 function submitForm() {
+  console.log("✅ submitForm بدأت");
   const overlay = document.getElementById('formOverlay');
   const fileInput = document.querySelector('.form-file');
   const checkboxes = document.querySelectorAll('.fees input');
-  const level = document.getElementById('formTitle')
-    .textContent.replace('For ', '').replace(' students', '');
-
+  const level = document.getElementById('formTitle').textContent.replace('For ', '').replace(' students', '');
   const inputs = document.querySelectorAll('.form-input');
   const values = Array.from(inputs).map(input => input.value.trim());
+  console.log("🧾 القيم المجمّعة:", values);
+
+  overlay.style.display = 'none';
 
   const confirmation = document.getElementById('confirmationBox');
-
-  // تخفي الفورم فور الضغط Send
-  overlay.style.display = 'none';
 
   const sendData = (fileData, fileObj) => {
     const data = {
@@ -423,12 +422,9 @@ function submitForm() {
       transportationFee: checkboxes[1].checked ? "Yes" : "No",
       accommodationFee: checkboxes[2].checked ? "Yes" : "No",
       registrationType: level,
-      file: {
-        name: fileObj.name,
-        mimeType: fileObj.type,
-        data: fileData
-      }
+      file: { name: fileObj.name, mimeType: fileObj.type, data: fileData }
     };
+    console.log("📤 سيتم إرسال هذا:", data);
 
     fetch("https://script.google.com/macros/s/AKfycbzbdNEQEgzq3GHcBf2QtLRJ4Ga2mxtyq8N50NTEp1a-PA7h4ZPXNne5s1ks9awiyHQIgQ/exec", {
       method: "POST",
@@ -436,13 +432,18 @@ function submitForm() {
       headers: { "Content-Type": "application/json" }
     })
     .then(res => {
-      if (res.ok) {
+      console.log("📶 استجابة الخادم:", res.status);
+      return res.text();
+    })
+    .then(text => {
+      console.log("📥 نص الإرجاع:", text);
+      if (text.includes("Success")) {
         confirmation.style.display = 'block';
         setTimeout(() => confirmation.style.display = 'none', 6000);
       }
     })
     .catch(err => {
-      console.error("Fetch error:", err);
+      console.error("❗ خطأ في Fetch:", err);
     });
   };
 
@@ -450,10 +451,12 @@ function submitForm() {
     const reader = new FileReader();
     reader.onload = function () {
       const fileData = reader.result.split(',')[1];
+      console.log("🖼️ تم قراءة الملف بنجاح");
       sendData(fileData, fileInput.files[0]);
     };
     reader.readAsDataURL(fileInput.files[0]);
   } else {
+    console.log("❕ لا يوجد ملف مرفوع");
     sendData("", { name: "no-file", type: "" });
   }
 }
