@@ -81,13 +81,18 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0; /* ✅ مهم جداً */
+  bottom: 0; /* مهم حتى نضمن أن العرض يغطي كامل الشاشة */
   background-color: rgba(65, 106, 132, 0.8);
   padding: 30px 20px;
-  display: none;
+  display: flex;
   flex-direction: column;
+  opacity: 0;
+  transform: translateY(-100px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
   z-index: 1000;
+  pointer-events: none; /* نمنع التفاعل لما تكون مخفية */
 }
+
 
 
     .form-content {
@@ -472,23 +477,35 @@ function submitForm() {
     sendData("", { name: "no-file", type: "" });
   }
 }
+</script>
 
-  function openForm(level) {
+  <script>
+function openForm(level) {
   const overlay = document.getElementById('formOverlay');
   const formTitle = document.getElementById('formTitle');
 
-  overlay.style.display = 'flex';
   formTitle.textContent = `For ${level} students`;
-
-  // 👇 إضافة مؤثر انزلاق (JavaScript فقط)
-  overlay.style.opacity = 0;
-  overlay.style.transform = 'translateY(-100px)';
+  
+  // إظهار الاستمارة بالمؤثر
+  overlay.style.display = 'flex';
   setTimeout(() => {
-    overlay.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    overlay.style.opacity = 1;
+    overlay.style.opacity = '1';
     overlay.style.transform = 'translateY(0)';
+    overlay.style.pointerEvents = 'auto';
   }, 10);
 }
+
+function closeForm() {
+  const overlay = document.getElementById('formOverlay');
+  overlay.style.opacity = '0';
+  overlay.style.transform = 'translateY(-100px)';
+  overlay.style.pointerEvents = 'none';
+
+  setTimeout(() => {
+    overlay.style.display = 'none';
+  }, 500);
+}
 </script>
+
 </body>
 </html> 
