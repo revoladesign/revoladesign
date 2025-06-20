@@ -79,46 +79,32 @@
     .form-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(65, 106, 132, 0.85);
+  background-color: rgba(65, 106, 132, 0.8);
   display: none;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   z-index: 1000;
-  padding: 20px;
-  animation: fadeIn 0.3s ease forwards;
   overflow-y: auto;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  padding: 30px 15px;
 }
 
 .form-content {
-  background-color: #416A84;
-  padding: 25px 25px;
+  background-color: transparent;
   max-width: 500px;
   width: 100%;
   margin: auto;
+  padding: 25px 20px;
   color: #D7E3E5;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
   box-sizing: border-box;
   overflow-y: auto;
-  animation: slideFadeIn 0.5s ease;
-}
-
-@keyframes slideFadeIn {
-  from { opacity: 0; transform: translateY(50px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .form-title-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
   flex-wrap: wrap;
-  margin-bottom: 15px;
 }
 
 .form-title-container h2 {
@@ -133,8 +119,7 @@
 
 .form-content p {
   font-size: 15px;
-  margin: 10px 0 15px;
-  line-height: 1.6;
+  margin: 10px 0;
 }
 
 .form-input,
@@ -177,20 +162,13 @@
   margin-bottom: 6px;
 }
 
-.upload-note {
-  font-size: 13px;
-  margin-top: 12px;
-  color: #D7E3E5;
-}
-
 .form-file {
   background-color: rgba(215, 227, 229, 0.5);
 }
 
 .send-btn {
-  display: block;
-  margin: 20px auto 10px;
-  padding: 10px 30px;
+  margin-top: 20px;
+  padding: 10px 25px;
   background-color: #D7E3E5;
   color: #416A84;
   border: none;
@@ -198,19 +176,11 @@
   font-size: 15px;
   border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.2s;
 }
 
-.send-btn:hover {
-  transform: scale(1.05);
-}
-
-.form-content::-webkit-scrollbar {
-  width: 6px;
-}
-.form-content::-webkit-scrollbar-thumb {
-  background-color: #D7E3E5;
-  border-radius: 3px;
+.upload-note {
+  font-size: 13px;
+  margin-top: 10px;
 }
 
 
