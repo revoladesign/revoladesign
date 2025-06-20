@@ -438,7 +438,7 @@ function submitForm() {
     fetch("https://script.google.com/macros/s/AKfycbzbdNEQEgzq3GHcBf2QtLRJ4Ga2mxtyq8N50NTEp1a-PA7h4ZPXNne5s1ks9awiyHQIgQ/exec", {
       method: "POST",
       body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "text/plain;charset=utf-8" }
     })
     .then(res => {
       log(`📶 الرد من الخادم: ${res.status}`);
