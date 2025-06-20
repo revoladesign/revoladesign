@@ -96,7 +96,7 @@
   background-color: transparent;
   padding: 20px;
   max-width: 480px;         /* ⬅️ تم تقليص الحجم */
-  width: 90%;
+  width: 80%;
   margin: auto;
   color: #D7E3E5;
   flex: 1;
@@ -150,7 +150,14 @@
     .split-inputs {
   display: flex;
   gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap; /* يجعلها تنزل تحت بعضها على الشاشات الصغيرة */
 }
+.split-inputs input:first-child,
+.split-inputs select {
+  width: 180px;
+}
+
 
 .split-inputs input:first-child,
 .split-inputs select {
