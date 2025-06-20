@@ -401,6 +401,15 @@ CCP: 0042689809 ☟☟</p>
 </script>
 
 <script>
+function openForm(level) {
+  document.getElementById('formOverlay').style.display = 'flex';
+  document.getElementById('formTitle').textContent = `For ${level} students`;
+}
+
+function closeForm() {
+  document.getElementById('formOverlay').style.display = 'none';
+}
+
 function submitForm() {
   const log = (msg) => {
     document.getElementById('debugLog').innerHTML += `<div>${msg}</div>`;
@@ -437,8 +446,7 @@ function submitForm() {
 
     fetch("https://script.google.com/macros/s/AKfycbzbdNEQEgzq3GHcBf2QtLRJ4Ga2mxtyq8N50NTEp1a-PA7h4ZPXNne5s1ks9awiyHQIgQ/exec", {
       method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "text/plain;charset=utf-8" }
+      body: JSON.stringify(data)
     })
     .then(res => {
       log(`📶 الرد من الخادم: ${res.status}`);
