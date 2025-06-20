@@ -81,17 +81,14 @@
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0; /* ✅ مهم جداً */
   background-color: rgba(65, 106, 132, 0.8);
   padding: 30px 20px;
   display: none;
   flex-direction: column;
-  animation: slideDown 0.5s ease;
   z-index: 1000;
 }
-    @keyframes slideUp {
-      from { transform: translateY(100%); }
-      to { transform: translateY(0); }
-    }
+
 
     .form-content {
       background-color: transparent;
