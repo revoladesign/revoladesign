@@ -81,10 +81,13 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0; /* أضفنا هذا للسماح بالحجم الكامل */
+  bottom: 0;
   background-color: rgba(65, 106, 132, 0.8);
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: auto; /* يسمح بالتمرير لو الشاشة صغيرة */
   animation: slideDown 0.5s ease;
   z-index: 1000;
 }
@@ -92,17 +95,17 @@
 .form-content {
   background-color: transparent;
   padding: 20px;
-  max-width: 600px;
+  max-width: 480px;         /* ⬅️ تم تقليص الحجم */
   width: 90%;
   margin: auto;
   color: #D7E3E5;
-
   flex: 1;
-  overflow-y: auto; /* 🔥 أهم شيء */
-  max-height: 90vh;
+  overflow-y: auto;
+  max-height: 85vh;         /* ⬅️ ارتفاع أقل لتفادي القطع */
   scroll-behavior: smooth;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3); /* تظليل خفيف */
 }
-
 
 .form-content::-webkit-scrollbar {
   width: 6px;
