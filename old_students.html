@@ -81,31 +81,28 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0; /* مهم حتى نضمن أن العرض يغطي كامل الشاشة */
+  bottom: 0; /* أضفنا هذا للسماح بالحجم الكامل */
   background-color: rgba(65, 106, 132, 0.8);
-  padding: 30px 20px;
-  display: flex;
+  display: none;
   flex-direction: column;
-  opacity: 0;
-  transform: translateY(-100px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  animation: slideDown 0.5s ease;
   z-index: 1000;
-  pointer-events: none; /* نمنع التفاعل لما تكون مخفية */
 }
 
-
-
-    .form-content {
+.form-content {
   background-color: transparent;
   padding: 20px;
   max-width: 600px;
+  width: 90%;
   margin: auto;
   color: #D7E3E5;
 
-  max-height: 80vh;          /* 80% من ارتفاع الشاشة */
-  overflow-y: auto;          /* تفعيل التمرير العمودي */
-  scroll-behavior: smooth;   /* تمرير ناعم */
+  flex: 1;
+  overflow-y: auto; /* 🔥 أهم شيء */
+  max-height: 90vh;
+  scroll-behavior: smooth;
 }
+
 
 .form-content::-webkit-scrollbar {
   width: 6px;
