@@ -475,6 +475,23 @@ function submitForm() {
     sendData("", { name: "no-file", type: "" });
   }
 }
+
+  function openForm(level) {
+  const overlay = document.getElementById('formOverlay');
+  const formTitle = document.getElementById('formTitle');
+
+  overlay.style.display = 'flex';
+  formTitle.textContent = `For ${level} students`;
+
+  // 👇 إضافة مؤثر انزلاق (JavaScript فقط)
+  overlay.style.opacity = 0;
+  overlay.style.transform = 'translateY(-100px)';
+  setTimeout(() => {
+    overlay.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    overlay.style.opacity = 1;
+    overlay.style.transform = 'translateY(0)';
+  }, 10);
+}
 </script>
 </body>
 </html> 
