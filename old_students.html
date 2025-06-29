@@ -458,6 +458,14 @@ Whether you’re ready from day one or rushing at the last minute — we’ve go
 
   <script>
     function openForm(level) {
+  // قائمة المستويات غير المفعّلة
+  const disabledLevels = ['M1', 'M2'];
+
+  if (disabledLevels.includes(level)) {
+    alert("Registration for this level is not available yet.");
+    return;
+  }
+      
       document.getElementById('formOverlay').style.display = 'flex';
       document.getElementById('formTitle').textContent = `For ${level} students`;
     }
