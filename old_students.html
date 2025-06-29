@@ -465,10 +465,12 @@ Whether you’re ready from day one or rushing at the last minute — we’ve go
     alert("Registration for this level is not available yet.");
     return;
   }
-      
-      document.getElementById('formOverlay').style.display = 'flex';
-      document.getElementById('formTitle').textContent = `For ${level} students`;
-    }
+
+  // كود فتح الاستمارة هنا
+  document.getElementById('formOverlay').style.display = 'flex';
+  document.getElementById('formTitle').textContent = `Registration Form - ${level}`;
+}
+
 
     function closeForm() {
       document.getElementById('formOverlay').style.display = 'none';
