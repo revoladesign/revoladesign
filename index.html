@@ -699,16 +699,24 @@
                 </h2>
                 
                 <div class="relative max-w-md mx-auto">
-                    <div id="presidentsSlider" class="overflow-hidden rounded-3xl">
-                        <!-- President 1 - إدريس رحماني -->
-                        <div class="president-slide active bg-gradient-to-br from-primary to-accent2 p-12 text-center shadow-2xl rounded-3xl border border-white border-opacity-20">
-                            <div class="w-32 h-32 bg-white bg-opacity-20 rounded-3xl mx-auto mb-8 flex items-center justify-center text-white text-4xl shadow-lg backdrop-blur-sm">
-                                <i class="fas fa-crown"></i>
-                            </div>
-                            <h3 class="font-bold text-white text-xl mb-3">إدريس رحماني</h3>
-                            <p class="text-primary text-sm mb-4 bg-white px-4 py-2 rounded-full inline-block">الرئيس المؤسس</p>
-                            <p class="text-white text-sm leading-relaxed opacity-90">العملاق الذي أسس النادي وسط ظروف صعبة بإمكانات شبه معدومة، ولكن بإرادة كانت أكبر من كل التحديات. وضع أول لبنة في صرح إعلامي طلابي ما زال قائماً حتى اليوم.</p>
-                        </div>
+                    <div class="president-slide active relative overflow-hidden bg-gradient-to-br from-primary to-accent2 p-12 text-center shadow-2xl rounded-3xl border border-white border-opacity-20">
+    
+    <!-- صورة الخلفية الضبابية -->
+    <div class="absolute inset-0 z-0">
+        <img src="images/idriss.jpg" alt="إدريس رحماني" class="w-full h-full object-cover blur-md opacity-50">
+    </div>
+
+    <!-- محتوى البطاقة فوق الخلفية -->
+    <div class="relative z-10">
+        <!-- صورة مصغّرة -->
+        <div class="w-32 h-32 rounded-full mx-auto mb-8 shadow-lg overflow-hidden border-4 border-white">
+            <img src="images/idriss.jpg" alt="إدريس رحماني" class="w-full h-full object-cover">
+        </div>
+        <h3 class="font-bold text-white text-xl mb-3">إدريس رحماني</h3>
+        <p class="text-primary text-sm mb-4 bg-white px-4 py-2 rounded-full inline-block">الرئيس المؤسس</p>
+        <p class="text-white text-sm leading-relaxed opacity-90">العملاق الذي أسس النادي وسط ظروف صعبة...</p>
+    </div>
+</div>
                         
                         <!-- President 2 - وليد شكيكن -->
                         <div class="president-slide bg-gradient-to-br from-accent1 to-accent2 p-12 text-center shadow-2xl rounded-3xl border border-white border-opacity-20">
