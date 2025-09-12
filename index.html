@@ -842,149 +842,74 @@
 
 
         <!-- Photo Gallery Section -->
-        <section id="activities" class="mb-20">
-            <h2 class="text-2xl font-bold text-center text-gray-900 mb-8 flex items-center justify-center gap-3">
-                <i class="fas fa-camera-retro text-primary text-3xl"></i>
-                معرض الصور
-            </h2>
-            
-            <div class="tech-card rounded-3xl p-8 mb-8">
-                <div id="photoGallery" class="slide-container">
-                    <div class="slide active">
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            <div class="relative group overflow-hidden rounded-2xl aspect-square bg-gradient-to-br from-primary to-accent2 hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(1)">
-                                <div class="absolute inset-0 flex items-center justify-center text-white">
-                                    <div class="text-center">
-                                        <i class="fas fa-image text-4xl mb-2"></i>
-                                        <p class="text-sm font-bold">ورشة التصوير</p>
-                                    </div>
-                                </div>
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <i class="fas fa-expand text-white text-xl"></i>
-                                </div>
-                            </div>
-                            
-                            <div class="relative group overflow-hidden rounded-2xl aspect-square bg-gradient-to-br from-accent1 to-secondary hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(2)">
-                                <div class="absolute inset-0 flex items-center justify-center text-white">
-                                    <div class="text-center">
-                                        <i class="fas fa-microphone text-4xl mb-2"></i>
-                                        <p class="text-sm font-bold">جلسة إذاعية</p>
-                                    </div>
-                                </div>
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <i class="fas fa-expand text-white text-xl"></i>
-                                </div>
-                            </div>
-                            
-                            <div class="relative group overflow-hidden rounded-2xl aspect-square bg-gradient-to-br from-accent2 to-primary hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(3)">
-                                <div class="absolute inset-0 flex items-center justify-center text-white">
-                                    <div class="text-center">
-                                        <i class="fas fa-video text-4xl mb-2"></i>
-                                        <p class="text-sm font-bold">إنتاج فيديو</p>
-                                    </div>
-                                </div>
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <i class="fas fa-expand text-white text-xl"></i>
-                                </div>
-                            </div>
-                            
-                            <div class="relative group overflow-hidden rounded-2xl aspect-square bg-gradient-to-br from-secondary to-accent1 hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(4)">
-                                <div class="absolute inset-0 flex items-center justify-center text-white">
-                                    <div class="text-center">
-                                        <i class="fas fa-theater-masks text-4xl mb-2"></i>
-                                        <p class="text-sm font-bold">عرض مسرحي</p>
-                                    </div>
-                                </div>
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <i class="fas fa-expand text-white text-xl"></i>
-                                </div>
-                            </div>
-                        </div>
+<section id="activities" class="mb-20">
+    <h2 class="text-2xl font-bold text-center text-gray-900 mb-8 flex items-center justify-center gap-3">
+        <i class="fas fa-camera-retro text-primary text-3xl"></i>
+        معرض الصور
+    </h2>
+    
+    <div class="tech-card rounded-3xl p-8 mb-8">
+        <div id="photoGallery" class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="relative group overflow-hidden rounded-2xl aspect-square hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(1)">
+                        <img src="tmcc1.jpg" alt="صورة 1" class="w-full h-full object-cover">
                     </div>
-                    
-                    <div class="slide">
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            <div class="relative group overflow-hidden rounded-2xl aspect-square bg-gradient-to-br from-primary to-secondary hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(5)">
-                                <div class="absolute inset-0 flex items-center justify-center text-white">
-                                    <div class="text-center">
-                                        <i class="fas fa-paint-brush text-4xl mb-2"></i>
-                                        <p class="text-sm font-bold">ورشة فنية</p>
-                                    </div>
-                                </div>
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <i class="fas fa-expand text-white text-xl"></i>
-                                </div>
-                            </div>
-                            
-                            <div class="relative group overflow-hidden rounded-2xl aspect-square bg-gradient-to-br from-accent2 to-accent1 hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(6)">
-                                <div class="absolute inset-0 flex items-center justify-center text-white">
-                                    <div class="text-center">
-                                        <i class="fas fa-music text-4xl mb-2"></i>
-                                        <p class="text-sm font-bold">حفل موسيقي</p>
-                                    </div>
-                                </div>
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <i class="fas fa-expand text-white text-xl"></i>
-                                </div>
-                            </div>
-                            
-                            <div class="relative group overflow-hidden rounded-2xl aspect-square bg-gradient-to-br from-accent1 to-primary hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(7)">
-                                <div class="absolute inset-0 flex items-center justify-center text-white">
-                                    <div class="text-center">
-                                        <i class="fas fa-pen-fancy text-4xl mb-2"></i>
-                                        <p class="text-sm font-bold">ورشة كتابة</p>
-                                    </div>
-                                </div>
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <i class="fas fa-expand text-white text-xl"></i>
-                                </div>
-                            </div>
-                            
-                            <div class="relative group overflow-hidden rounded-2xl aspect-square bg-gradient-to-br from-secondary to-accent2 hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(8)">
-                                <div class="absolute inset-0 flex items-center justify-center text-white">
-                                    <div class="text-center">
-                                        <i class="fas fa-film text-4xl mb-2"></i>
-                                        <p class="text-sm font-bold">مهرجان سينما</p>
-                                    </div>
-                                </div>
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"></div>
-                                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <i class="fas fa-expand text-white text-xl"></i>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="relative group overflow-hidden rounded-2xl aspect-square hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(2)">
+                        <img src="tmcc2.jpg" alt="صورة 2" class="w-full h-full object-cover">
+                    </div>
+                    <div class="relative group overflow-hidden rounded-2xl aspect-square hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(3)">
+                        <img src="tmcc3.jpg" alt="صورة 3" class="w-full h-full object-cover">
+                    </div>
+                    <div class="relative group overflow-hidden rounded-2xl aspect-square hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(4)">
+                        <img src="tmcc4.jpg" alt="صورة 4" class="w-full h-full object-cover">
                     </div>
                 </div>
-                
-                <!-- Gallery Navigation -->
-                <div class="flex justify-center items-center gap-4 mt-8">
-                    <button onclick="prevSlide()" class="glass hover:neon-glow p-3 rounded-full transition-all duration-300">
-                        <i class="fas fa-chevron-right text-white"></i>
-                    </button>
-                    <div class="flex gap-2">
-                        <div class="w-3 h-3 bg-accent2 rounded-full slide-indicator active" data-slide="0"></div>
-                        <div class="w-3 h-3 bg-gray-400 rounded-full slide-indicator" data-slide="1"></div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="relative group overflow-hidden rounded-2xl aspect-square hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(5)">
+                        <img src="tmcc5.jpg" alt="صورة 5" class="w-full h-full object-cover">
                     </div>
-                    <button onclick="nextSlide()" class="glass hover:neon-glow p-3 rounded-full transition-all duration-300">
-                        <i class="fas fa-chevron-left text-white"></i>
-                    </button>
+                    <div class="relative group overflow-hidden rounded-2xl aspect-square hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(6)">
+                        <img src="tmcc6.jpg" alt="صورة 6" class="w-full h-full object-cover">
+                    </div>
+                    <div class="relative group overflow-hidden rounded-2xl aspect-square hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(7)">
+                        <img src="tmcc7.jpg" alt="صورة 7" class="w-full h-full object-cover">
+                    </div>
+                    <div class="relative group overflow-hidden rounded-2xl aspect-square hover:scale-105 transition-all duration-500 cursor-pointer" onclick="viewImage(8)">
+                        <img src="tmcc8.jpg" alt="صورة 8" class="w-full h-full object-cover">
+                    </div>
                 </div>
             </div>
-            
-            <div class="text-center">
-                <button onclick="openFullGallery()" class="tech-gradient hover:neon-glow text-white px-10 py-4 rounded-2xl text-lg font-bold transition-all duration-300">
-                    <i class="fas fa-images ml-2"></i>
-                    عرض المعرض الكامل
-                </button>
+        </div>
+        
+        <!-- Gallery Navigation -->
+        <div class="flex justify-center items-center gap-4 mt-8">
+            <button onclick="prevSlide()" class="glass hover:neon-glow p-3 rounded-full transition-all duration-300">
+                <i class="fas fa-chevron-right text-white"></i>
+            </button>
+            <div class="flex gap-2">
+                <div class="w-3 h-3 bg-accent2 rounded-full slide-indicator active" data-slide="0"></div>
+                <div class="w-3 h-3 bg-gray-400 rounded-full slide-indicator" data-slide="1"></div>
             </div>
-        </section>
+            <button onclick="nextSlide()" class="glass hover:neon-glow p-3 rounded-full transition-all duration-300">
+                <i class="fas fa-chevron-left text-white"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="text-center">
+        <button onclick="openFullGallery()" class="tech-gradient hover:neon-glow text-white px-10 py-4 rounded-2xl text-lg font-bold transition-all duration-300">
+            <i class="fas fa-images ml-2"></i>
+            عرض المعرض الكامل
+        </button>
+    </div>
+</section>
+
 
         <!-- About Section -->
         <section id="about" class="mb-16">
