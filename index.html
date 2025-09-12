@@ -1335,15 +1335,15 @@ setInterval(nextMemberBatch, 5000);
         <!-- News Section -->
 <section id="news" class="mb-16">
   <h2 class="text-4xl font-extrabold text-center text-primary mb-10">الأخبار والتحديثات</h2>
+  
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
     <!-- News Item 1 -->
-    <div class="relative bg-gray-100 rounded-xl shadow-lg overflow-hidden h-64">
-      <!-- الخلفية بصورة -->
-      <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('khabar10.png');"></div>
-      
-      <!-- طبقة ضبابية في الأسفل -->
-      <div class="absolute inset-x-0 bottom-0 h-45 bg-gradient-to-t from-white/97 to-transparent"></div>
+    <div class="relative rounded-xl shadow-lg overflow-hidden h-64">
+      <!-- الخلفية بصورة ضبابية -->
+      <div class="absolute inset-0">
+        <img src="khabar10.png" alt="إطلاق مسابقة التصوير السنوية" class="w-full h-full object-cover blur-md opacity-50">
+      </div>
       
       <!-- المحتوى -->
       <div class="relative p-6 flex flex-col justify-end h-full">
@@ -1354,12 +1354,11 @@ setInterval(nextMemberBatch, 5000);
     </div>
 
     <!-- News Item 2 -->
-    <div class="relative bg-gray-100 rounded-xl shadow-lg overflow-hidden h-64">
-      <!-- الخلفية بصورة -->
-      <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('khabar2.png');"></div>
-      
-      <!-- طبقة ضبابية في الأسفل -->
-      <div class="absolute inset-x-0 bottom-0 h-45 bg-gradient-to-t from-white/97 to-transparent"></div>
+    <div class="relative rounded-xl shadow-lg overflow-hidden h-64">
+      <!-- الخلفية بصورة ضبابية -->
+      <div class="absolute inset-0">
+        <img src="khabar2.png" alt="ورشة المونتاج المتقدم" class="w-full h-full object-cover blur-md opacity-50">
+      </div>
       
       <!-- المحتوى -->
       <div class="relative p-6 flex flex-col justify-end h-full">
