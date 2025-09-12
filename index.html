@@ -1339,13 +1339,10 @@ setInterval(nextMemberBatch, 5000);
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
     <!-- News Item 1 -->
-    <div class="relative rounded-xl shadow-lg overflow-hidden h-64">
-      <!-- الخلفية بصورة ضبابية -->
+    <div class="relative rounded-xl shadow-lg overflow-hidden h-64 cursor-pointer" onclick="openFacebookPost('https://www.facebook.com/share/v/15SPjs7972/?mibextid=wwXIfr')">
       <div class="absolute inset-0">
         <img src="khabar10.png" alt="إطلاق مسابقة التصوير السنوية" class="w-full h-full object-cover blur-md opacity-70">
       </div>
-      
-      <!-- المحتوى -->
       <div class="relative p-6 flex flex-col justify-end h-full">
         <h3 class="font-bold text-lg mb-2">إطلاق مسابقة التصوير السنوية</h3>
         <p class="text-gray-700 text-sm mb-3">مسابقة مفتوحة لجميع الطلاب بجوائز قيمة</p>
@@ -1354,13 +1351,10 @@ setInterval(nextMemberBatch, 5000);
     </div>
 
     <!-- News Item 2 -->
-    <div class="relative rounded-xl shadow-lg overflow-hidden h-64">
-      <!-- الخلفية بصورة ضبابية -->
+    <div class="relative rounded-xl shadow-lg overflow-hidden h-64 cursor-pointer" onclick="openFacebookPost('https://www.facebook.com/share/v/1CEeWo5jw8/?mibextid=wwXIfr')">
       <div class="absolute inset-0">
         <img src="khabar2.png" alt="ورشة المونتاج المتقدم" class="w-full h-full object-cover blur-md opacity-70">
       </div>
-      
-      <!-- المحتوى -->
       <div class="relative p-6 flex flex-col justify-end h-full">
         <h3 class="font-bold text-lg mb-2">ورشة المونتاج المتقدم</h3>
         <p class="text-gray-700 text-sm mb-3">ورشة تدريبية مكثفة في تقنيات المونتاج الحديثة</p>
@@ -1370,6 +1364,34 @@ setInterval(nextMemberBatch, 5000);
 
   </div>
 </section>
+
+<!-- Modal لإظهار المنشور -->
+<div id="fbModal" class="fixed inset-0 bg-black/70 hidden justify-center items-center z-50">
+  <div class="bg-white rounded-xl p-4 relative w-11/12 md:w-2/3 lg:w-1/2 max-h-[90vh] overflow-auto">
+    <button onclick="closeFacebookPost()" class="absolute top-2 right-2 text-gray-700 hover:text-gray-900 font-bold text-xl">&times;</button>
+    <!-- مكان المنشور -->
+    <div id="fbPostContainer"></div>
+  </div>
+</div>
+
+<!-- SDK فيسبوك -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v17.0"></script>
+
+<script>
+function openFacebookPost(url) {
+  const container = document.getElementById('fbPostContainer');
+  container.innerHTML = `<div class="fb-post" data-href="${url}" data-width="500"></div>`;
+  FB.XFBML.parse(container); // لإعادة تهيئة SDK
+  document.getElementById('fbModal').classList.remove('hidden');
+}
+
+function closeFacebookPost() {
+  const container = document.getElementById('fbPostContainer');
+  container.innerHTML = ''; // إزالة المنشور عند الإغلاق
+  document.getElementById('fbModal').classList.add('hidden');
+}
+</script>
         
 
         <!-- Contact Section -->
